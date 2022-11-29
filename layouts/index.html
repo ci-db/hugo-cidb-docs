@@ -5,7 +5,14 @@
 
     </head>
     <body>
-        <b>hallo</b>
+        <b>hallo222</b>
+        
+        {{ $title_plain := .Title | markdownify | plainify }}
+        <b>{{ $title_plain }}</b>
+        <b>{{  .Title }}</b>
+       
+        {{ .Content }}
+        
     </body>
 </html>
 
