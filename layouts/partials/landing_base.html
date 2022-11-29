@@ -1,0 +1,12 @@
+
+
+
+{{ if .landing.enable }}
+{{ if isset .landing "partial" }}
+          
+            <section id="{{.landing.identifier}}" class="ld-section ld-pt_{{ replace .landing.partial "/" "-" }}{{ if isset .landing "class" }} {{.landing.class}}{{ end }}">
+            {{ partial .landing.partial . }}
+            </section>
+{{ end }}
+{{ end }}
+

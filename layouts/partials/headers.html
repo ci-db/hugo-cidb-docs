@@ -1,0 +1,21 @@
+
+        <meta charset="utf-8">
+        <meta name="robots" content="all,follow">
+        <meta name="googlebot" content="index,follow,snippet,archive">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {{ $title_plain := .Site.Title | markdownify | plainify }}
+        <title>{{ $title_plain }}</title>
+        <meta name="author" content="{{ .Param "author" }}" />
+        {{ $keywords := .Site.Params.defaultKeywords | default (slice "" | first 0) }}
+        {{ if isset .Params "tags" }}{{ range .Params.tags }}{{ $keywords = $keywords | append . }}{{ end }}{{ end }}
+        {{ if isset .Params "keywords" }}{{ range .Params.keywords }}{{ $keywords = $keywords | append . }}{{ end }}{{ end }}
+        {{ if gt (len $keywords) 0 }}
+        <meta name="keywords" content="{{ delimit (uniq $keywords) ", " }}">
+        {{ end }}
+        {{ $description_plain := default .Site.Params.defaultDescription .Description | markdownify | plainify }}
+        <meta name="description" content="{{ $description_plain }}">
+        {{ hugo.Generator }}
+        <link rel="stylesheet" href="{{ "css/bootstrap-icons/bootstrap-icons.css" | relURL }}">
+        {{ $options_css1 := (dict "targetPath" "dokus.css" "outputStyle" "compressed" "enableSourceMap" false) }}
+        {{ $style1 := resources.Get "scss/dokus/dokus.scss" | resources.ToCSS $options_css1 }}
+        <link rel="stylesheet" href="{{ $style1.Permalink }}?v={{ now.Unix }}">

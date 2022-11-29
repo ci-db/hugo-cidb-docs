@@ -1,0 +1,15 @@
+
+
+title: "Dokus Theme"
+#theme: "hugo-cidb-dokus"
+
+params:
+  page:
+
+  top:
+    enable: true
+    fluid: false
+
+  nav:
+    enable: true
+    fluid: false

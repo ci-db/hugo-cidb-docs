@@ -1,0 +1,12 @@
+
+
+
+{{ range  .Pages.ByWeight  }}    
+{{ if .IsNode  }}   
+<div> {{ .Title }}
+    {{ partial "sidemenu-items" . }}
+</div>
+{{ else }}
+<div><a href="{{.Permalink}}">{{ .Title }}</a></div>
+{{ end }}
+{{ end }}
