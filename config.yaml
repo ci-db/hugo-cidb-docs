@@ -3,6 +3,10 @@
 title: "Dokus Theme"
 #theme: "hugo-cidb-dokus"
 
+# aufbau /docs/COLLECTION/SPACES/VERSION/
+collection: true
+spaces: true
+
 params:
   page:
 

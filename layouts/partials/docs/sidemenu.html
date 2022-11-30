@@ -1,0 +1,8 @@
+{{ $root := .Site.GetPage "/docs" }}
+
+<div class="side-menu">
+
+    {{ partial "docs/sidemenu-items"  (dict "currentPage" . "item" $root )}}
+
+
+</div>

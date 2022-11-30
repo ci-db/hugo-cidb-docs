@@ -1,42 +1,7 @@
-<html lang="{{ .Site.LanguageCode }}">
+{{ define "main" }}
 
-    <head>
-        {{ partial "headers.html" . }}
-        {{ partial "headers_custom.html" . }}
-    </head>
 
-    <body>
-        
-        {{ partial "top.html" . }}
-        {{ partial "nav.html" . }}
 
-        <main>
-            <div class="container{{ if .Site.Params.page.fluid }}-fluid{{ end }}">
-                <div class="row">
-                    <div class="col-3">
+{{ partial "docs/single.html" . }}
 
-                        {{ partial "sidemenu.html" . }}
-
-                
-                    </div>
-                    <div class="col-9">
-                        {{ printf "%#v" $.Site.Pages }}
-
-                        {{ with .Content }}
-                     nicht 
-                        {{- . -}}
-                        {{else}}
-                        leer
-                      {{ end }}
-                                                
-                    </div>
-                </div>
-            </div>
-        </main>
-
-        {{ partial "scripts.html" . }}
-        {{ partial "footer.html" . }}           
-        {{ partial "copyright.html" . }}           
-    </body>
-
-</html>
+{{ end }}

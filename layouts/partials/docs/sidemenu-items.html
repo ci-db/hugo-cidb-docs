@@ -1,0 +1,16 @@
+
+
+{{ $currentPage := .currentPage }}   
+{{ range  .item.Pages.ByWeight  }}    
+{{ if .IsNode  }}    
+<div> {{ .Title }} 
+    {{ partial "docs/sidemenu-items" (dict "currentPage" $currentPage  "item" . )  }}
+</div>
+{{ else }}
+<div><a class="{{ if eq .Path  $currentPage.Path }}active{{ end }}" href="{{.Permalink}}">{{ .Title }}</a></div>
+{{ end }}
+{{ end }}
+
+
+
+

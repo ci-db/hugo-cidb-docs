@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+
+    <head>
+        {{ partial "headers.html" . }}
+        {{ partial "headers_custom.html" . }}
+    </head>
+
+    <body>
+        
+        {{ partial "top.html" . }}
+        {{ partial "nav.html" . }}
+
+
+{{ block "main" . }}
+               
+{{ end }}
+
+
+
+
+        {{ partial "scripts.html" . }}
+        {{ partial "footer.html" . }}           
+        {{ partial "copyright.html" . }}           
+    </body>
+
+</html>
