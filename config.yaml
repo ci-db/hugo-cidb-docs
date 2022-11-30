@@ -8,6 +8,9 @@ collection: true
 spaces: true
 
 params:
+  books:
+    collapsible: true
+
   page:
 
   top:

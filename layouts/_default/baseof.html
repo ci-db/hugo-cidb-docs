@@ -11,17 +11,36 @@
         {{ partial "top.html" . }}
         {{ partial "nav.html" . }}
 
-
-{{ block "main" . }}
-               
-{{ end }}
-
-
+        <main id="main">
+            <div class="container{{ if .Site.Params.page.fluid }}-fluid{{ end }}">
+                <div class="row">
+                    {{ if or (eq .Type "books") (eq .Type "books/book" ) }}
+                    <div class="col-3">
+                        {{ partial "docs/sidemenu.html" . }}        
+                    </div>
+                    <div class="col-9">
+                        <div id="content">
+                            {{ block "main" . }}{{ end }}
+                        </div>
+                    </div>
+                    {{ else }}
+                    <div class="col">
+                        <div id="content">
+                         {{ block "main" . }}{{ end }}
+                        </div>
+                    </div>
+                    {{ end }} 
+                    </div>
+            </div>
+        </main>
 
 
         {{ partial "scripts.html" . }}
         {{ partial "footer.html" . }}           
         {{ partial "copyright.html" . }}           
+
+
+
     </body>
 
 </html>

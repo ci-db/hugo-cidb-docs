@@ -1,0 +1,33 @@
+ 
+{{ $currentPage :=  .currentPage }}
+{{ $site :=  .site }}
+{{ $collapsible := false }}
+{{ $collapsible_text := "accordion accordion-flush" }}
+{{ if $site.Params.books.collapsible }}
+    {{ $collapsible = true }}
+{{ end }}
+
+
+{{ if  eq $currentPage.Type "books" }}
+
+<div class="sidemenu-container{{ if $collapsible }} {{ $collapsible_text }}{{ end }}"  id="sidemenu-accordion">
+    {{ partial "docs/sidemenu-builder-item"  (dict  "site" $site "root" $currentPage  "currentPage" $currentPage "stufe" 1 "item" $currentPage )}}
+</div>
+
+{{ else }}
+
+{{ with .node.Parent }}
+
+{{ if  eq .Type "books" }}
+
+<div class="sidemenu-container{{ if $collapsible }} {{ $collapsible_text }}{{ end }}"  id="sidemenu-accordion">  {{ $collapsible }}
+    {{ partial "docs/sidemenu-builder-item"  (dict "root" . "currentPage" $currentPage "stufe" 1 "item" . )}}
+</div>
+{{ else }}
+{{ partial "docs/sidemenu-builder" (dict "site" $site "currentPage"  $currentPage  "node" . ) }}
+
+{{ end }}
+{{ end }}
+
+{{ end }}
+
