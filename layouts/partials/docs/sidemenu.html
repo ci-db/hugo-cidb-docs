@@ -1,4 +1,9 @@
-<div class="side-menu">
-    {{ partial "docs/sidemenu-builder"  (dict "site" .Site "currentPage" . "node" . )}}
+<nav class="nav flex-column">
 
+
+
+<div id="sidemenu">
+    <nav class="nav flex-column">
+        {{ partial "docs/sidemenu-builder"  (dict "site" .Site "currentPage" . "node" . )}}
+    </nav>
 </div>

@@ -9,3 +9,23 @@
         padding-left: 10px;
     }
 }
+
+
+#sidemenu {
+    a.active {
+        font-weight: bold;
+    }
+    nav nav {
+        padding-left: 12px;
+    }
+
+    >nav a{
+      text-decoration: underline;   
+ 
+    }
+    nav nav a {
+        text-decoration: none;   
+      }    
+
+    
+}
