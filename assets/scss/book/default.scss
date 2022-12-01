@@ -1,0 +1,161 @@
+@page {
+    /*margin: 20mm 15mm;*/    
+    margin: 76px 15mm 76px 15mm;
+    size: A4;
+    @top-center {
+        content: element(pageHeader)
+      
+    }
+    /*
+    @top-center {
+        content: element(titleRunning)    
+        content: "<b>test</b> Seite " counter(page) " von " counter(pages);
+    }
+    */
+    @left-top {
+ 
+    }
+
+    @top-left {
+      
+    }
+
+
+    @bottom-center {
+        content: element(pageFooter)
+    }
+
+    /*
+    @bottom-center {
+        content: "Seite " counter(page) " von " counter(pages);
+    }
+    */
+}
+
+
+@media not print {
+    body {
+        background-color: #cccccc;
+    }
+    .pagedjs_page {
+        background-color: #ffffff;
+        border: 1px solid #000000;
+        margin: 40px auto;
+    }
+}
+
+
+#list-toc-generated { 
+    list-style: none;
+}
+
+#list-toc-generated .toc-element { 
+    break-inside: avoid; 
+}
+
+#list-toc-generated .toc-element a::after {
+    content: " " target-counter(attr(href), page);
+    float: right;
+}
+
+#list-toc-generated .toc-element-level-1 {
+    margin-top: 6px;
+    font-weight: bold;
+    color: #6485e9;
+}
+
+#list-toc-generated .toc-element-level-2 {
+    margin-left: 25px;
+    margin-top: 6px;       
+}
+
+
+/* Inhaltsverzeichnis: counters */
+
+#list-toc-generated{ 
+    counter-reset: counterTocLevel1; 
+}
+
+#list-toc-generated .toc-element-level-1{ 
+    counter-increment: counterTocLevel1; 
+    counter-reset: counterTocLevel2; 
+}
+
+#list-toc-generated .toc-element-level-1::before{ 
+    content: counter(counterTocLevel1);
+    padding-right: 10px;
+
+}
+
+#list-toc-generated .toc-element-level-2{ 
+    counter-increment: counterTocLevel2; 
+    padding-left: 36px;
+
+
+}
+
+#list-toc-generated .toc-element-level-2::before{ 
+    content: counter(counterTocLevel1) ". " counter(counterTocLevel2);
+    position: absolute;
+    left: 18px;
+
+}
+
+
+#list-toc-generated{ /* hack for leaders */
+    overflow-x: hidden;
+}
+
+#list-toc-generated .toc-element::after{ /* fake leading */
+    content: 
+        ".............................................."
+        ".............................................."
+        ".............................................."  
+        "........";
+    float: left;
+    width: 0;
+    padding-left: 5px;
+    letter-spacing: 2px;
+}
+
+#list-toc-generated .toc-element{
+    display: flex; 
+}
+
+#list-toc-generated .toc-element a::after{
+    position: absolute;
+    right: 0;
+    background-color: white;
+    padding-left: 6px;
+}
+
+#list-toc-generated .toc-element a{
+    right: 0;
+}
+
+#list-toc-generated a{ 
+    color: #000000;
+    text-decoration: none;
+    font-weight: normal;
+}
+
+
+#list-toc-generated .toc-element-level-1 a, #list-toc-generated .toc-element-level-1{ 
+    font-weight: bold;
+    color: #6485e9;
+}
+
+
+#toc {
+    /* page-break-after: always;*/
+    overflow: hidden;
+ }
+ #toc ul::-webkit-scrollbar {
+     display: none;
+ }
+ 
+ #toc li {
+     font-size: 10pt;
+ }
+ 
+ 

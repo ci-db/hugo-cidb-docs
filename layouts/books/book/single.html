@@ -1,12 +1,6 @@
 {{ define "main" }}
 
-        {{ if isset .Params "content_from"}}
-                    
-        {{ $page := .Site.GetPage .Params.content_from }}
-        {{ $page.Content }}  
-        {{ else }}
-        {{ .Content }}  
-        {{ end }}
+{{ partial "docs/single" . }}
 
 
 {{ end }}

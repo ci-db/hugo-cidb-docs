@@ -1,22 +1,12 @@
-<main>
-    <div class="container{{ if .Site.Params.page.fluid }}-fluid{{ end }}">
-        <div class="row">
-            <div class="col-3">
 
-                {{ partial "docs/sidemenu.html" . }}
-             
-            </div>
-            <div class="col-9">
-  
-                {{ if isset .Params "content_from"}}
-             
-                {{ $page := .Site.GetPage .Params.content_from }}
-                {{ $page.Content }}  
-                {{ else }}
-                {{ .Content }}  
-                {{ end }}
-                                  
-            </div>
-        </div>
-    </div>
-</main>
+{{  .Params.printLink  }}
+{{ if .Params.printLink }}
+<div><a href="pdf/" target="_blank">Print Vorschau</a></div>
+{{ end }}
+{{ if isset .Params "content_from"}}
+            
+{{ $page := .Site.GetPage .Params.content_from }}
+{{ $page.Content }}  
+{{ else }}
+{{ .Content }}  
+{{ end }}

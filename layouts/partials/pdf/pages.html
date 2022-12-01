@@ -1,0 +1,22 @@
+
+{{ $stufe := .stufe }}
+{{ $root := .root }}
+{{ $site := .site }}
+
+{{ range  $index, $element := .item.Pages.ByWeight  }}    
+
+    <div  id="{{ .File }}" class="level-{{ $stufe }}"><a class="level-{{ $stufe }}">{{ .Title }}</a></div>
+    <div class="content">
+        {{ if isset .Params "content_from"}}                    
+        {{ $page := $site.GetPage .Params.content_from }}
+        {{ $page.Content }}  
+        {{ else }}
+        {{ .Content }}  
+        {{ end }}
+
+    </div>
+    {{ if .IsNode  }}      
+    {{ partial "pdf/pages" (dict "site" $site "root" $root  "stufe" (add ($stufe) 1)  "item" . )  }}
+    {{ end }}
+{{ end }}
+
