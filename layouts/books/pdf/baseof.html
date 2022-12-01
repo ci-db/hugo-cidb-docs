@@ -8,14 +8,23 @@
     </head>
 
     <body>
-        <div id="inhaltsverzeichnis">
-            <div class="ci-main-title">Inhaltsverzeichnis</div>
+
+        {{ if .Content  }}
+         <div id="frontpage">
+            {{ .Content }}
+         </div>
+       
+        {{ end }}
+
+        <div id="table-of-content" >
+            <div >Inhaltsverzeichnis</div>
             <div id="toc"></div>
         </div>
 
+
+
         {{ partial "pdf/pages"  (dict  "site" .Site "root" .Parent  "stufe" 1 "item" .Parent )}}
 
-  
 
 
 
