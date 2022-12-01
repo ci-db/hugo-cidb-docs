@@ -1,0 +1,21 @@
+
+
+
+{{ $sliceOriginal := slice }}
+{{ range (.Scratch.Get "breadcrumb")  }}
+        {{ $sliceOriginal =  $sliceOriginal | append . }} 
+{{ end }}
+{{- $breadcrumbArray := partial "helper/reverse-slice.html" $sliceOriginal -}}
+
+{{ $current := . }}
+{{ $len := (len $breadcrumbArray) }}
+<div id="breadcrumb">
+    <nav  aria-label="breadcrumb">
+        <ol class="breadcrumb">
+        {{ range $index, $element := $breadcrumbArray }}
+            <li  class="breadcrumb-item"><a href="{{ .Permalink }}">{{.Title}} </a></li>
+        {{ end }}
+            <li  class="breadcrumb-item">{{ .Title }} </a></li>
+        </ol>
+    </nav>
+</div>

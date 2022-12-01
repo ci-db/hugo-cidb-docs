@@ -3,12 +3,13 @@
 {{ $site :=  .site }}
 {{ $collapsible := false }}
 {{ $collapsible_text := "accordion accordion-flush" }}
-{{ if $site.Params.books.collapsible }}
+{{ if $site.Params.docs.collapsible }}
     {{ $collapsible = true }}
 {{ end }}
 
 
-{{ if  eq $currentPage.Type "books" }}
+
+{{ if  eq $currentPage.Type "docs" }}
 
 <div class="sidemenu-container{{ if $collapsible }} {{ $collapsible_text }}{{ end }}"  id="sidemenu-accordion">
     {{ partial "docs/sidemenu-builder-item"  (dict  "site" $site "root" $currentPage  "currentPage" $currentPage "stufe" 1 "item" $currentPage )}}
@@ -18,9 +19,9 @@
 
 {{ with .node.Parent }}
 
-{{ if  eq .Type "books" }}
+{{ if  eq .Type "docs" }}
 
-<div class="sidemenu-container{{ if $collapsible }} {{ $collapsible_text }}{{ end }}"  id="sidemenu-accordion">  {{ $collapsible }}
+<div class="sidemenu-container{{ if $collapsible }} {{ $collapsible_text }}{{ end }}"  id="sidemenu-accordion"> 
     {{ partial "docs/sidemenu-builder-item"  (dict "root" . "currentPage" $currentPage "stufe" 1 "item" . )}}
 </div>
 {{ else }}
@@ -30,4 +31,3 @@
 {{ end }}
 
 {{ end }}
-

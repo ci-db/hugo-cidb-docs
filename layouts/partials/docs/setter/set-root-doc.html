@@ -1,0 +1,24 @@
+
+
+{{ $node := .node }}
+{{ $current := .current}}
+{{ if  eq .node.Type "docs" }}
+{{  $current.Scratch.Set "doc-root" .node }}    
+{{ else }}
+{{ with .node.Parent }}
+
+{{ if  eq .Type "docs" }}
+{{  $current.Scratch.Set "doc-root" . }}
+{{ else  }}
+{{ partial "docs/setter/set-root-doc" (dict "node" . "current"  $current ) }}
+{{ end }}
+{{ end }}
+
+{{ end }}
+
+
+
+
+
+
+

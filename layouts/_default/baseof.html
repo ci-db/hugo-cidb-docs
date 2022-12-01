@@ -10,13 +10,14 @@
         
         {{ partial "top.html" . }}
         {{ partial "nav.html" . }}
+  
 
         <main id="main">
             <div class="container{{ if .Site.Params.page.fluid }}-fluid{{ end }}">
                 <div class="row">
-                    {{ if or (eq .Type "books") (eq .Type "books/book" ) }}
+                    {{ if or (eq .Type "docs") (eq .Type "docs/doc" ) (eq .Type "version" ) }}
                     <div class="col-3">
-                        {{ partial "docs/sidemenu.html" . }}        
+                        {{ block "sidemenu" . }} {{ end }}                     
                     </div>
                     <div class="col-9">
                         <div id="content">
@@ -34,7 +35,7 @@
             </div>
         </main>
 
-
+   
         {{ partial "scripts.html" . }}
         {{ partial "footer.html" . }}           
         {{ partial "copyright.html" . }}           

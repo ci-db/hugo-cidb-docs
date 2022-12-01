@@ -8,7 +8,7 @@ collection: true
 spaces: true
 
 params:
-  books:
+  docs:
     collapsible: true
 
   page:

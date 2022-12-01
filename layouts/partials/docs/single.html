@@ -1,7 +1,9 @@
+{{ partial "docs/setter/set" . }}
 
-{{  .Params.printLink  }}
+{{ partial "breadcrumb" . }}
+
 {{ if .Params.printLink }}
-<div><a href="pdf/" target="_blank">Print Vorschau</a></div>
+<div class="main-actions"><a href="pdf/" target="_blank">Print Vorschau</a></div>
 {{ end }}
 {{ if isset .Params "content_from"}}
             
