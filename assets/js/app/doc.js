@@ -1,38 +1,4 @@
-
-{{- $root :=  partial "doc/helper/get-doc-root" . -}}
-{{- partial "breadcrumb" (dict  "root" $root "current" . ) -}}
-
-{{- /* Aktionbar  */ -}}
-{{- $count := 0 -}}
-{{- range $index, $element :=  where .Pages "Type" "doc/pdf" -}}
-{{-   $count = add $index 1 -}}
-{{- end -}}
-{{- if ne $count 0 -}}
-<div class="main-actions">
-    <ul class="nav justify-content-end">
-{{-   range where .Pages "Type" "doc/pdf" -}}
-        <li class="nav-item"><a href="pdf/" target="_blank">Print Vorschau</a></li>
-{{-   end -}}
-    </ul>
-</div>
-{{- end -}}
-{{ $page := . }}
-{{- if isset .Params "content_from" -}}            
-{{- $page := .Site.GetPage .Params.content_from -}}
-{{- end -}}
-<h1>{{ $page.Title }}</h1>
-{{- if ne $page ".Description" "" -}}
-{{ $page.Description }}
-{{ end }}
-{{- $page.Content -}}  
-
-{{- define "scripts" -}}
-
-{{ $opts := dict "targetPath" "doc.js" "minify" true }}
-{{ $js_doc := resources.Get "js/app/doc.js" | js.Build $opts }}
-<script src="{{ $js_doc.RelPermalink }}?v={{ now.Unix }}"></script>
-<script>
-    /*
+ /*
               $( document ).ready(function() {
                   $(window).on('popstate', function() {
                           loadContent(location.pathname);
@@ -65,5 +31,3 @@
                     });
               });
   */
-          </script>
-{{- end -}}

@@ -18,7 +18,7 @@
         {{ $description_plain := default .Site.Params.defaultDescription .Description | markdownify | plainify }}
         <meta name="description" content="{{ $description_plain }}">
         {{ hugo.Generator }}
-        <link rel="stylesheet" href="{{ "css/bootstrap-icons/bootstrap-icons.css" | relURL }}">
+        <link rel="stylesheet" href="{{ "css/bootstrap-icons/bootstrap-icons.css?v1.10.0" | relURL }}">
         {{ $options_css1 := (dict "targetPath" "dokus.css" "outputStyle" "compressed" "enableSourceMap" false) }}
         {{ $style1 := resources.Get "scss/dokus/dokus.scss" | resources.ToCSS $options_css1 }}
         <link rel="stylesheet" href="{{ $style1.Permalink }}?v={{ now.Unix }}">
@@ -57,32 +57,17 @@
         </header>
         {{ end }}
         {{ end }}
-        
+
         <main id="main">
             <div class="container{{ if .Site.Params.page.fluid }}-fluid{{ end }}">
-                <div class="row">
-                    {{ if or (eq .Type "doc") (eq .Type "doc/page" ) (eq .Type "version" ) }}
-                    <div class="col-3">
-                        {{ block "sidemenu" . }} {{ end }}                     
-                    </div>
-                    <div class="col-9">
-                        <div id="content">
-                            {{ block "main" . }}{{ end }}
-                        </div>
-                    </div>
-                    {{ else }}
-                    <div class="col">
-                        <div id="content">
-                         {{ block "main" . }}{{ end }}
-                        </div>
-                    </div>
-                    {{ end }} 
-                    </div>
+                <div class="row">    
+                    {{ block "main" . }} {{ end }}     
+                </div>
             </div>
         </main>
 
-        <script src="{{ "js/jquery/jquery-3.6.1.min.js" | relURL }}"></script>
-        <script src="{{ "js/bootstrap/bootstrap.bundle.min.js" | relURL }}"></script>
+        <script src="{{ "js/jquery/jquery.min.js?v=v3.6.1" | relURL }}"></script>
+        <script src="{{ "js/bootstrap/bootstrap.bundle.min.js?v=v5.2.3" | relURL }}"></script>
         {{ block "scripts" . }}{{ end }}
 
         {{/* partial "footer.html" . */}}           
