@@ -1,9 +1,7 @@
-<nav class="nav flex-column">
-
-
+{{ partial "docs/setter/set-root-doc" (dict "current" . "node" .) }}
 
 <div id="sidemenu">
     <nav class="nav flex-column">
-        {{ partial "docs/sidemenu-builder"  (dict "site" .Site "currentPage" . "node" . )}}
+        {{ partial "docs/sidemenu-builder" (dict "site" .Site  "currentPage" . "root"  (.Scratch.Get "doc-root")  "stufe" 1  "item" (.Scratch.Get "doc-root") )  }}
     </nav>
 </div>

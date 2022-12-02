@@ -11,7 +11,7 @@
         {{ partial "top.html" . }}
         {{ partial "nav.html" . }}
   
-
+        {{ .Type }}    {{ .Kind }} 
         <main id="main">
             <div class="container{{ if .Site.Params.page.fluid }}-fluid{{ end }}">
                 <div class="row">

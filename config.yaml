@@ -7,6 +7,8 @@ title: "Dokus Theme"
 collection: true
 spaces: true
 
+
+
 params:
   docs:
     collapsible: true
@@ -20,3 +22,22 @@ params:
   nav:
     enable: true
     fluid: false
+
+cascade:
+  - _target:
+      path: "**/docs/_index.md"
+    type: docs    
+
+  - _target:
+      path: "**/docs/**"
+      kind: Page
+    type: docs/doc
+
+  - _target:
+      path: "**/docs/*/**"
+      kind: Section
+    type: docs/doc
+
+
+
+

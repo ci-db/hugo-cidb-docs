@@ -1,12 +1,24 @@
 {{ partial "docs/setter/set" . }}
-
 {{ partial "breadcrumb" . }}
 
-{{ if .Params.printLink }}
-<div class="main-actions"><a href="pdf/" target="_blank">Print Vorschau</a></div>
+{{ $count := 0}}
+{{ range $index, $element :=  where .Pages "Type" "docs/pdf" }}
+{{ $count = add $index 1 }}
 {{ end }}
-{{ if isset .Params "content_from"}}
-            
+{{ if ne $count 0 }}
+
+<div class="main-actions">
+    <ul class="nav justify-content-end">
+{{ range where .Pages "Type" "docs/pdf" }}
+<li class="nav-item"><a href="pdf/" target="_blank">Print Vorschau</a></li>
+{{ end }}
+</ul>
+</div>
+{{ end}}
+
+
+
+{{ if isset .Params "content_from"}}            
 {{ $page := .Site.GetPage .Params.content_from }}
 {{ $page.Content }}  
 {{ else }}
