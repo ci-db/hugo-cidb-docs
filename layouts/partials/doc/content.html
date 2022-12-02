@@ -30,8 +30,25 @@
 
 {{ $opts := dict "targetPath" "doc.js" "minify" true }}
 {{ $js_doc := resources.Get "js/app/doc.js" | js.Build $opts }}
+<style>
+    /*
+    body, html {
+        overflow: hidden;
+        margin: 0;        
+    }
+  
+    #content {
+        height:100vh;
+        overflow-y: auto; 
+        padding-bottom: 180px;
+    }
+    */
+      
+</style>
 <script src="{{ $js_doc.RelPermalink }}?v={{ now.Unix }}"></script>
 <script>
+
+
     /*
               $( document ).ready(function() {
                   $(window).on('popstate', function() {

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ .Site.LanguageCode }}">
+<html lang="{{ .Site.LanguageCode }}" class="type-{{.Type}}">
 
     <head>
         <meta charset="utf-8">
@@ -27,20 +27,12 @@
 
     <body>
         
-        {{ if isset .Site.Params "top" }}
-        {{ if .Site.Params.top.enable }}
-        <header id="ly-top" class="d-none d-sm-none d-md-none d-lg-block">
-            <div class="container{{if .Site.Params.top.fluid }}-fluid{{end}}" >
-                &nbsp;
-            </div>
-        </header>
-        {{ end }}
-        {{ end }}
+
 
         {{ if isset .Site.Params "nav" }}
         {{ if .Site.Params.nav.enable }}
         
-        <header id="ly-nav">
+        <header id="navbar">
             <nav class="navbar navbar-expand-md navbar-dark bg-dark " >
                 <div class="container{{if .Site.Params.nav.fluid }}-fluid{{end}}" >
                     <a class="navbar-brand"  href="{{ "" | relURL }}" >{{ .Site.Title | markdownify | plainify }}
@@ -59,7 +51,7 @@
         {{ end }}
 
         <main id="main">
-            <div class="container{{ if .Site.Params.page.fluid }}-fluid{{ end }}">
+            <div class="main-container container{{ if .Site.Params.page.fluid }}-fluid{{ end }}">
                 <div class="row">    
                     {{ block "main" . }} {{ end }}     
                 </div>

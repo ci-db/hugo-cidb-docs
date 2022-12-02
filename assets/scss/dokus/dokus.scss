@@ -1,5 +1,31 @@
 @import "bootstrap.scss";
 
+#topbar {    
+    background-color: #000;
+}
+
+
+#navbar {    
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background-color: #000;
+    z-index: 10000;
+}
+
+html, body {
+    overflow: hidden;
+}
+.type-doc {
+    #content, #sidebar, #aside  {
+        overflow-y: scroll;
+        height: calc(100vh - 60px);
+    }
+
+}
+
+
+
 
 .side-menu {
     .active {

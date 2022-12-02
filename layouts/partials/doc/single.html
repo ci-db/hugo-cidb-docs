@@ -1,0 +1,19 @@
+
+ 
+    <div class="col-3" id="sidebar">
+        {{- partial "doc/sidemenu.html" . -}}                    
+    </div>
+
+    <div class="col"  id="content">
+            {{- partial "doc/content.html" . -}}     
+      
+    </div>
+    {{ $page := partial "doc/helper/get-page.html" . }}     
+    {{ if ne $page.Content "" }}
+    <div class="col-3">
+        <div id="aside">
+            {{ $page.TableOfContents }}
+        </div>
+    </div>
+    {{ end }} 
+
