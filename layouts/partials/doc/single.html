@@ -1,15 +1,15 @@
-{{ partial "docs/setter/set" . }}
+{{ partial "doc/setter/set" . }}
 {{ partial "breadcrumb" . }}
 
 {{ $count := 0}}
-{{ range $index, $element :=  where .Pages "Type" "docs/pdf" }}
+{{ range $index, $element :=  where .Pages "Type" "doc/pdf" }}
 {{ $count = add $index 1 }}
 {{ end }}
 {{ if ne $count 0 }}
 
 <div class="main-actions">
     <ul class="nav justify-content-end">
-{{ range where .Pages "Type" "docs/pdf" }}
+{{ range where .Pages "Type" "doc/pdf" }}
 <li class="nav-item"><a href="pdf/" target="_blank">Print Vorschau</a></li>
 {{ end }}
 </ul>

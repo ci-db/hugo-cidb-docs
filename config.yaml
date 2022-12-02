@@ -1,16 +1,17 @@
 
 
 title: "Dokus Theme"
+
 #theme: "hugo-cidb-dokus"
 
-# aufbau /docs/COLLECTION/SPACES/VERSION/
+# aufbau /doc/COLLECTION/SPACES/VERSION/
 collection: true
 spaces: true
 
 
 
 params:
-  docs:
+  doc:
     collapsible: true
 
   page:
@@ -23,21 +24,29 @@ params:
     enable: true
     fluid: false
 
+
+
 cascade:
   - _target:
-      path: "**/docs/_index.md"
-    type: docs    
+      path: "/doc/_index.md"
+    type: doc    
+  - _target:
+      path: "/spaces/*/doc/_index.md"
+    type: doc    
 
   - _target:
-      path: "**/docs/**"
+      path: "/doc/**"
       kind: Page
-    type: docs/doc
+    type: doc/page
+  - _target:
+      path: "/spaces/*/doc/**"
+      kind: Page
+    type: doc/page
+
 
   - _target:
-      path: "**/docs/*/**"
+      path: "**/doc/*/**"
       kind: Section
-    type: docs/doc
-
-
+    type: doc/page
 
 
