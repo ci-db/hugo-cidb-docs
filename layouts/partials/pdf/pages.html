@@ -3,9 +3,9 @@
 {{ $root := .root }}
 {{ $site := .site }}
 
-{{ range  $index, $element := .item.Pages.ByWeight  }}    
+{{ range  $index, $element := where  .item.Pages.ByWeight "Type" "doc" }}    
 
-    <div  id="{{ .File }}" class="level-{{ $stufe }}"><a class="level-{{ $stufe }}">{{ .Title }}</a></div>
+    <h1>{{ .Title }}</h1>
     <div class="content">
         {{ if isset .Params "content_from"}}                    
         {{ $page := $site.GetPage .Params.content_from }}

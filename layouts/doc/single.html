@@ -1,9 +1,6 @@
-{{ define "main" }}
-
-{{ partial "doc/single" . }}
-
-{{ end }}
-
-{{ define "sidemenu" }}
-{{ partial "doc/sidemenu.html" . }}       
-{{ end }}
+{{- define "main" -}}
+{{- partial "doc/content.html" . -}}     
+{{- end -}}
+{{- define "sidemenu" -}}
+{{- partial "doc/sidemenu.html" . -}}       
+{{- end -}}

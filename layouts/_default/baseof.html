@@ -2,16 +2,62 @@
 <html lang="{{ .Site.LanguageCode }}">
 
     <head>
-        {{ partial "headers.html" . }}
-        {{ partial "headers_custom.html" . }}
+        <meta charset="utf-8">
+        <meta name="robots" content="all,follow">
+        <meta name="googlebot" content="index,follow,snippet,archive">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {{ $title_plain := .Site.Title | markdownify | plainify }}
+        <title>{{ $title_plain }}</title>
+        <meta name="author" content="{{ .Param "author" }}" />
+        {{ $keywords := .Site.Params.defaultKeywords | default (slice "" | first 0) }}
+        {{ if isset .Params "tags" }}{{ range .Params.tags }}{{ $keywords = $keywords | append . }}{{ end }}{{ end }}
+        {{ if isset .Params "keywords" }}{{ range .Params.keywords }}{{ $keywords = $keywords | append . }}{{ end }}{{ end }}
+        {{ if gt (len $keywords) 0 }}
+        <meta name="keywords" content="{{ delimit (uniq $keywords) ", " }}">
+        {{ end }}
+        {{ $description_plain := default .Site.Params.defaultDescription .Description | markdownify | plainify }}
+        <meta name="description" content="{{ $description_plain }}">
+        {{ hugo.Generator }}
+        <link rel="stylesheet" href="{{ "css/bootstrap-icons/bootstrap-icons.css" | relURL }}">
+        {{ $options_css1 := (dict "targetPath" "dokus.css" "outputStyle" "compressed" "enableSourceMap" false) }}
+        {{ $style1 := resources.Get "scss/dokus/dokus.scss" | resources.ToCSS $options_css1 }}
+        <link rel="stylesheet" href="{{ $style1.Permalink }}?v={{ now.Unix }}">
+        {{- partial "headers_custom.html" . -}}
     </head>
 
     <body>
         
-        {{ partial "top.html" . }}
-        {{ partial "nav.html" . }}
-  
-        {{ .Type }}    {{ .Kind }} 
+        {{ if isset .Site.Params "top" }}
+        {{ if .Site.Params.top.enable }}
+        <header id="ly-top" class="d-none d-sm-none d-md-none d-lg-block">
+            <div class="container{{if .Site.Params.top.fluid }}-fluid{{end}}" >
+                &nbsp;
+            </div>
+        </header>
+        {{ end }}
+        {{ end }}
+
+        {{ if isset .Site.Params "nav" }}
+        {{ if .Site.Params.nav.enable }}
+        
+        <header id="ly-nav">
+            <nav class="navbar navbar-expand-md navbar-dark bg-dark " >
+                <div class="container{{if .Site.Params.nav.fluid }}-fluid{{end}}" >
+                    <a class="navbar-brand"  href="{{ "" | relURL }}" >{{ .Site.Title | markdownify | plainify }}
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarCollapse">
+                    
+          
+                    </div>
+                </div>
+            </nav>
+        </header>
+        {{ end }}
+        {{ end }}
+        
         <main id="main">
             <div class="container{{ if .Site.Params.page.fluid }}-fluid{{ end }}">
                 <div class="row">
@@ -35,12 +81,12 @@
             </div>
         </main>
 
-   
-        {{ partial "scripts.html" . }}
-        {{ partial "footer.html" . }}           
-        {{ partial "copyright.html" . }}           
+        <script src="{{ "js/jquery/jquery-3.6.1.min.js" | relURL }}"></script>
+        <script src="{{ "js/bootstrap/bootstrap.bundle.min.js" | relURL }}"></script>
+        {{ block "scripts" . }}{{ end }}
 
-
+        {{/* partial "footer.html" . */}}           
+        {{/* partial "copyright.html" . */}}           
 
     </body>
 

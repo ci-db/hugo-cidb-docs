@@ -2,7 +2,7 @@
 {{ $sliceOriginal := slice }}
 {{ $data := newScratch }}
 
-{{ template "items"  (dict "data" $data "root" .root "node" .current )}}
+{{ template "breadcrumb-items"  (dict "data" $data "root" .root "node" .current )}}
 
 {{ range ($data.Get "breadcrumb")  }}
     {{ $sliceOriginal =  $sliceOriginal | append . }} 
@@ -19,14 +19,16 @@
         {{ range $index, $element := $breadcrumbArray }}
             <li  class="breadcrumb-item"><a href="{{ .Permalink }}">{{  partial "helper/page-title" . }} </a></li>
         {{ end }}
+        {{ if .showCurrent }}
         <li  class="breadcrumb-item">{{ partial "helper/page-title" .current }}</a></li>
+        {{ end }}
         </ol>
     </nav>
 </div>
 
 
 
-{{ define "items" }}
+{{ define "breadcrumb-items" }}
 
 {{ $root := .root }}
 {{ $node := .node }}
@@ -40,7 +42,7 @@
 {{ with .node.Parent  }}
 
 {{  $data.Add "breadcrumb" (slice . ) }}    
-{{ template "items" (dict "data" $data "root"  $root  "node" . ) }}
+{{ template "breadcrumb-items" (dict "data" $data "root"  $root  "node" . ) }}
 
 {{ end }}
 {{ end }}
