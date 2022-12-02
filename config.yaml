@@ -37,16 +37,16 @@ cascade:
   - _target:
       path: "/doc/**"
       kind: Page
-    type: doc/page
+    type: doc
   - _target:
       path: "/spaces/*/doc/**"
       kind: Page
-    type: doc/page
+    type: doc
 
 
   - _target:
       path: "**/doc/*/**"
       kind: Section
-    type: doc/page
+    type: doc
 
 

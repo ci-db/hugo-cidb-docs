@@ -1,21 +1,49 @@
 
-
-
 {{ $sliceOriginal := slice }}
-{{ range (.Scratch.Get "breadcrumb")  }}
-        {{ $sliceOriginal =  $sliceOriginal | append . }} 
-{{ end }}
-{{- $breadcrumbArray := partial "helper/reverse-slice.html" $sliceOriginal -}}
+{{ $data := newScratch }}
 
-{{ $current := . }}
+{{ template "items"  (dict "data" $data "root" .root "node" .current )}}
+
+{{ range ($data.Get "breadcrumb")  }}
+    {{ $sliceOriginal =  $sliceOriginal | append . }} 
+{{ end }}
+
+{{ $breadcrumbArray := partial "helper/reverse-slice.html" $sliceOriginal }}
+
+
+
 {{ $len := (len $breadcrumbArray) }}
 <div id="breadcrumb">
     <nav  aria-label="breadcrumb">
-        <ol class="breadcrumb">
+        <ol class="breadcrumb">            
         {{ range $index, $element := $breadcrumbArray }}
-            <li  class="breadcrumb-item"><a href="{{ .Permalink }}">{{.Title}} </a></li>
+            <li  class="breadcrumb-item"><a href="{{ .Permalink }}">{{  partial "helper/page-title" . }} </a></li>
         {{ end }}
-            <li  class="breadcrumb-item">{{ .Title }} </a></li>
+        <li  class="breadcrumb-item">{{ partial "helper/page-title" .current }}</a></li>
         </ol>
     </nav>
 </div>
+
+
+
+{{ define "items" }}
+
+{{ $root := .root }}
+{{ $node := .node }}
+{{ $data := .data }}
+
+
+{{ if eq $node.File $root.File }}
+
+{{ else }}
+
+{{ with .node.Parent  }}
+
+{{  $data.Add "breadcrumb" (slice . ) }}    
+{{ template "items" (dict "data" $data "root"  $root  "node" . ) }}
+
+{{ end }}
+{{ end }}
+
+{{ end}}
+
