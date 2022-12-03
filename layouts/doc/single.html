@@ -1,6 +1,16 @@
 {{ define "main" }}
 
-{{ partial "doc/single" . }}
+<div id="col-sidebar" class="col-2  sticky-nav">
+    {{- partial "doc/sidebar.html" . -}}
+</div>
+
+<div id="col-content" class="col">
+    {{- partial "doc/content.html" . -}}
+</div>
+
+<div id="col-aside" class="col-2 sticky-nav">
+    {{- partial "doc/aside.html" . -}}
+</div>
 
 
 {{ end}}

@@ -29,10 +29,28 @@
 {{ end }}
 {{- $page.Content -}}  
 
+
+
+<div class="d-flex justify-content-center mb-3">
+    <div class="p-2">
+        {{ if .NextInSection  }}
+        <a class="link-reverse" href="{{ .NextInSection.Permalink }}">< {{ .NextInSection.Title | truncate 50 "..." }}</a>
+        {{ end }}        
+    </div>
+    <div class="p-2"></div>
+    <div class="p-2">
+        {{ if .PrevInSection }}
+        <a class="link-reverse" href="{{ .PrevInSection.Permalink }}">{{ .PrevInSection.Title | truncate 50 "..." }} ></a>
+        {{ end }}        
+    </div>
+</div>
+
+
 {{- define "scripts" -}}
 
 {{ $opts := dict "targetPath" "doc.js" "minify" true }}
 {{ $js_doc := resources.Get "js/app/doc.js" | js.Build $opts }}
+
 <style>
     /*
     body, html {
@@ -86,4 +104,7 @@
               });
   */
           </script>
+
+
+
 {{- end -}}

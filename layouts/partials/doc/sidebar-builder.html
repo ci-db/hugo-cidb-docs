@@ -1,9 +1,9 @@
-{{ $currentPage := .currentPage }}   
-{{ $stufe := .stufe }}
-{{ $root := .root }}
-{{ $site := .site }}
+{{- $currentPage := .currentPage -}}   
+{{- $stufe := .stufe -}}
+{{- $root := .root -}}
+{{- $site := .site -}}
 
-{{ range  $index, $element := .item.Pages.ByWeight  }}    
+{{ range $index, $element := where   .item.Pages.ByWeight "Type" "doc"  }}    
     {{ if .IsNode  }}    
 
     {{ if eq $stufe 1}}
@@ -11,7 +11,6 @@
         {{ if .Site.Params.doc.collapsible }}
             {{ $collapsible = true }}
         {{ end }}
-
 
 
         {{ if $collapsible }}
@@ -22,8 +21,8 @@
                 <a class="ajax-call level-{{ $stufe }}{{ if eq .File  $currentPage.File }} active{{ end }}" href="{{.Permalink}}">{{ .Title }}</a>
             </button>
             </h2>
-            <div id="collapse-{{ $index }}" class="accordion-collapse collapse" aria-labelledby="nav-header-{{ $index }}" data-bs-parent="#sidemenu-accordion">
-                <div class="accordion-body"> {{ partial "doc/sidemenu-builder-item" (dict "site" $site "root" $root "currentPage"  $currentPage "stufe" (add ($stufe) 1)  "item" . )  }}</div>
+            <div id="collapse-{{ $index }}" class="accordion-collapse collapse" aria-labelledby="nav-header-{{ $index }}" data-bs-parent="#sidebar-accordion">
+                <div class="accordion-body"> {{ partial "doc/sidebar-builder-item" (dict "site" $site "root" $root "currentPage"  $currentPage "stufe" (add ($stufe) 1)  "item" . )  }}</div>
             </div>
         </div>
         -->
@@ -31,7 +30,7 @@
         <!--
         <div class="level-{{ $stufe }}">
             <a class="ajax-call level-{{ $stufe }}{{ if eq .File  $currentPage.File }} active{{ end }}" href="{{.Permalink}}">{{ .Title }}</a>
-            {{ partial "doc/sidemenu-builder-item" (dict "site" $site "root" $root "currentPage"  $currentPage "stufe" (add ($stufe) 1)  "item" . )  }}
+            {{ partial "doc/sidebar-builder-item" (dict "site" $site "root" $root "currentPage"  $currentPage "stufe" (add ($stufe) 1)  "item" . )  }}
         </div>
         -->
         {{ end}}
@@ -41,7 +40,7 @@
         <!--
         <div class="level-{{ $stufe }}">
             <a class="ajax-call level-{{ $stufe }}{{ if eq .File  $currentPage.File }} active{{ end }}" href="{{.Permalink}}">{{ .Title }}</a>
-            {{ partial "doc/sidemenu-builder-item" (dict "site" $site "root" $root "currentPage"  $currentPage "stufe" (add ($stufe) 1)  "item" . )  }}
+            {{ partial "doc/sidebar-builder-item" (dict "site" $site "root" $root "currentPage"  $currentPage "stufe" (add ($stufe) 1)  "item" . )  }}
         </div>
         -->
     {{ end }} 
@@ -53,10 +52,18 @@
     {{ end }}
 
 
-    <a class="nav-link ajax-call{{ if eq .File  $currentPage.File }} active{{ end }}" href="{{.Permalink}}">{{ .Title }}</a>
+    {{ $title := .Title }}
+
+    {{ if eq  $title ""}} 
+        {{ $title = "{{ NO TITLE }}" }}
+    {{ end }}
+    
+
+        <a class="nav-link ajax-call{{ if eq .File  $currentPage.File }} active{{ end }}" href="{{.Permalink}}">{{  partial "helper/page-title" . }}</a>
+
     {{ if .IsNode  }}  
     <nav>
-        {{ partial "doc/sidemenu-builder-item" (dict "site" $site "root" $root "currentPage"  $currentPage "stufe" (add ($stufe) 1)  "item" . )  }}
+        {{ partial "doc/sidebar-builder" (dict "site" $site "root" $root "currentPage"  $currentPage "stufe" (add ($stufe) 1)  "item" . )  }}
     </nav>    
     {{ end }}
 

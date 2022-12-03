@@ -29,6 +29,7 @@
         
 
 
+
         {{ if isset .Site.Params "nav" }}
         {{ if .Site.Params.nav.enable }}
         
@@ -49,7 +50,9 @@
         </header>
         {{ end }}
         {{ end }}
-        {{ .Type }} {{ .Path }}
+
+
+        
         <main id="main">
             <div class="main-container container{{ if .Site.Params.page.fluid }}-fluid{{ end }}">
                 <div class="row">    
@@ -62,9 +65,19 @@
         <script src="{{ "js/bootstrap/bootstrap.bundle.min.js?v=v5.2.3" | relURL }}"></script>
         <script src="{{ "js/scrollbar/scrollbar.js?v=7x" | relURL }}"></script>
         <script>
-            Scrollbar.init(document.querySelector('#content'));
-            Scrollbar.init(document.querySelector('#sidebar'));
-            Scrollbar.init(document.querySelector('#aside'));
+            /*
+            if ( $( "#sidebar" ).length ) {
+                Scrollbar.init(document.querySelector('#sidebar'));            
+            }
+            if ( $( "#sidebar" ).length ) {
+                Scrollbar.init(document.querySelector('#sidebar'));            
+            }
+
+*/
+
+          
+           
+           // Scrollbar.init(document.querySelector('#aside'));
         </script>
         {{ block "scripts" . }}{{ end }}
 

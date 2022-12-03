@@ -10,11 +10,11 @@
 
 
 {{ if  eq $currentPage.Type "doc" }}
-{{ partial "doc/sidemenu-builder-item"  (dict  "site" $site "root" $currentPage  "currentPage" $currentPage "stufe" 1 "item" $currentPage )}}
+{{ partial "doc/sidebar-builder-item"  (dict  "site" $site "root" $currentPage  "currentPage" $currentPage "stufe" 1 "item" $currentPage )}}
 
 <!--
-<div class="sidemenu-container{{ if $collapsible }} {{ $collapsible_text }}{{ end }}"  id="sidemenu-accordion">
-    {{ partial "doc/sidemenu-builder-item"  (dict  "site" $site "root" $currentPage  "currentPage" $currentPage "stufe" 1 "item" $currentPage )}}
+<div class="sidebar-container{{ if $collapsible }} {{ $collapsible_text }}{{ end }}"  id="sidebar-accordion">
+    {{ partial "doc/sidebar-builder-item"  (dict  "site" $site "root" $currentPage  "currentPage" $currentPage "stufe" 1 "item" $currentPage )}}
 </div>
 -->
 
@@ -23,15 +23,15 @@
 {{ with .node.Parent }}
 
 {{ if  eq .Type "doc" }}
-{{ partial "doc/sidemenu-builder-item"  (dict "root" . "currentPage" $currentPage "stufe" 1 "item" . )}}
+{{ partial "doc/sidebar-builder-item"  (dict "root" . "currentPage" $currentPage "stufe" 1 "item" . )}}
 
 <!--
-<div class="sidemenu-container{{ if $collapsible }} {{ $collapsible_text }}{{ end }}"  id="sidemenu-accordion"> 
-    {{ partial "doc/sidemenu-builder-item"  (dict "root" . "currentPage" $currentPage "stufe" 1 "item" . )}}
+<div class="sidebar-container{{ if $collapsible }} {{ $collapsible_text }}{{ end }}"  id="sidebar-accordion"> 
+    {{ partial "doc/sidebar-builder-item"  (dict "root" . "currentPage" $currentPage "stufe" 1 "item" . )}}
 </div>
 -->
 {{ else }}
-{{ partial "doc/sidemenu-builder" (dict "site" $site "currentPage"  $currentPage  "node" . ) }}
+{{ partial "doc/sidebar-builder" (dict "site" $site "currentPage"  $currentPage  "node" . ) }}
 
 {{ end }}
 {{ end }}

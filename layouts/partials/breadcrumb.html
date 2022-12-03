@@ -19,7 +19,7 @@
         {{ range $index, $element := $breadcrumbArray }}
             <li  class="breadcrumb-item"><a href="{{ .Permalink }}">{{  partial "helper/page-title" . }} </a></li>
         {{ end }}
-        {{ if .showCurrent }}
+        {{ if not (isset . "hideCurrent") }}
         <li  class="breadcrumb-item">{{ partial "helper/page-title" .current }}</a></li>
         {{ end }}
         </ol>

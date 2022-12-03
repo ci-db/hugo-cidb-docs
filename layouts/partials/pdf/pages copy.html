@@ -1,0 +1,23 @@
+
+{{ $stufe := .stufe }}
+{{ $root := .root }}
+{{ $site := .site }}
+
+
+
+{{ range  $index, $element := where  .item.Pages.ByWeight "Type" "doc" }}    
+
+    <h1>{{ .Title }}</h1>
+    <div class="content">
+        {{ if isset .Params "content_from"}}                    
+        {{ $page := $site.GetPage .Params.content_from }}
+        {{ $page.Content }}  
+        {{ else }}
+        {{ .Content }}  
+        {{ end }}
+
+    </div>
+    {{ if .IsNode  }}      
+ 
+    {{ end }}
+{{ end }}
