@@ -39,3 +39,10 @@ cascade:
       path: "**/doc/**"
     type: doc
     layout: single
+
+cascade:
+  - _target:
+      path: "**/doc/**"
+    type: doc
+    layout: single
+

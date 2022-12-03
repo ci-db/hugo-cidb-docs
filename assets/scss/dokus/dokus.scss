@@ -4,6 +4,13 @@
     background-color: #000;
 }
 
+.no-print {
+    @media print {
+        display: none;
+
+    }
+
+}
 
 #navbar {    
     position: -webkit-sticky;
@@ -17,11 +24,24 @@ html, body {
     overflow: hidden;
 }
 .type-doc {
-    #content, #sidebar, #aside  {
+     .doc-component  {
         overflow-y: scroll;
         height: calc(100vh - 60px);
+
+        /* Hide scrollbar for Chrome, Safari and Opera */
+
+        /*
+    -ms-overflow-style: none;  
+    scrollbar-width: none; 
+    &::-webkit-scrollbar {
+        display: none;
+      }
+    */
     }
 
+
+
+  
 }
 
 

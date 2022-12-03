@@ -32,7 +32,7 @@
         {{ if isset .Site.Params "nav" }}
         {{ if .Site.Params.nav.enable }}
         
-        <header id="navbar">
+        <header id="navbar" class="no-print" >
             <nav class="navbar navbar-expand-md navbar-dark bg-dark " >
                 <div class="container{{if .Site.Params.nav.fluid }}-fluid{{end}}" >
                     <a class="navbar-brand"  href="{{ "" | relURL }}" >{{ .Site.Title | markdownify | plainify }}
@@ -49,7 +49,7 @@
         </header>
         {{ end }}
         {{ end }}
-
+        {{ .Type }} {{ .Path }}
         <main id="main">
             <div class="main-container container{{ if .Site.Params.page.fluid }}-fluid{{ end }}">
                 <div class="row">    
@@ -60,6 +60,12 @@
 
         <script src="{{ "js/jquery/jquery.min.js?v=v3.6.1" | relURL }}"></script>
         <script src="{{ "js/bootstrap/bootstrap.bundle.min.js?v=v5.2.3" | relURL }}"></script>
+        <script src="{{ "js/scrollbar/scrollbar.js?v=7x" | relURL }}"></script>
+        <script>
+            Scrollbar.init(document.querySelector('#content'));
+            Scrollbar.init(document.querySelector('#sidebar'));
+            Scrollbar.init(document.querySelector('#aside'));
+        </script>
         {{ block "scripts" . }}{{ end }}
 
         {{/* partial "footer.html" . */}}           

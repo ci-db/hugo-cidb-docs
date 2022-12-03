@@ -1,37 +1,7 @@
 {{ define "main" }}
 
- {{- /*
-    <div class="row"  id="sidebar"  >
-    <div class="col-3 sidebar-content" >
-        {{- partial "doc/sidemenu.html" . -}}                    
-    </div>
-    <div class="col-8">
-                      
-    </div>    
-    </div>
-    / -}}
-    {{- /* Dummy */ -}}
+{{ partial "doc/single" . }}
 
-    <div class="col-3" >
-        <div id="sidebar">
-        {{- partial "doc/sidemenu.html" . -}}    
-        </div>
-    </div>
-
-    <div class="col">
-        <div  id="content">
-
-         {{- partial "doc/content.html" . -}}     
-        </div>
-    </div>
-    {{ $page := partial "doc/helper/get-page.html" . }}     
-    {{ if ne $page.Content "" }}
-    <div class="col-3">
-        <div id="aside">
-            {{ $page.TableOfContents }}
-        </div>
-    </div>
-    {{ end }} 
 
 {{ end}}
 

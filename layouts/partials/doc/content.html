@@ -1,17 +1,20 @@
 
 {{- $root :=  partial "doc/helper/get-doc-root" . -}}
+{{- $page :=  . -}}
 {{- partial "breadcrumb" (dict  "root" $root "current" . ) -}}
 
 {{- /* Aktionbar  */ -}}
 {{- $count := 0 -}}
-{{- range $index, $element :=  where .Pages "Type" "doc/pdf" -}}
+{{- range $index, $element :=  where $root.Pages "Type" "doc/pdf" -}}
 {{-   $count = add $index 1 -}}
 {{- end -}}
 {{- if ne $count 0 -}}
-<div class="main-actions">
+<div class="main-actions no-print">
     <ul class="nav justify-content-end">
-{{-   range where .Pages "Type" "doc/pdf" -}}
-        <li class="nav-item"><a href="pdf/" target="_blank">Print Vorschau</a></li>
+
+        
+{{-   range where $root.Pages "Type" "doc/pdf" -}}
+        <li class="nav-item"><a href="{{.Permalink}}" target="_blank">{{ if ne .Title "" }}{{ .Title }}{{ else }}Print{{ end }}</a></li>
 {{-   end -}}
     </ul>
 </div>
