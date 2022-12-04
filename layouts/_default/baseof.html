@@ -1,39 +1,9 @@
 <!DOCTYPE html>
-<html lang="{{ .Site.LanguageCode }}" class="type-{{.Type}}">
-
-    <head>
-        <meta charset="utf-8">
-        <meta name="robots" content="all,follow">
-        <meta name="googlebot" content="index,follow,snippet,archive">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        {{ $title_plain := .Site.Title | markdownify | plainify }}
-        <title>{{ $title_plain }}</title>
-        <meta name="author" content="{{ .Param "author" }}" />
-        {{ $keywords := .Site.Params.defaultKeywords | default (slice "" | first 0) }}
-        {{ if isset .Params "tags" }}{{ range .Params.tags }}{{ $keywords = $keywords | append . }}{{ end }}{{ end }}
-        {{ if isset .Params "keywords" }}{{ range .Params.keywords }}{{ $keywords = $keywords | append . }}{{ end }}{{ end }}
-        {{ if gt (len $keywords) 0 }}
-        <meta name="keywords" content="{{ delimit (uniq $keywords) ", " }}">
-        {{ end }}
-        {{ $description_plain := default .Site.Params.defaultDescription .Description | markdownify | plainify }}
-        <meta name="description" content="{{ $description_plain }}">
-        {{ hugo.Generator }}
-        <link rel="stylesheet" href="{{ "css/bootstrap-icons/bootstrap-icons.css?v1.10.2" | relURL }}">
-        {{ $options_dokus := (dict "targetPath" "dokus.css" "outputStyle" "compressed" "enableSourceMap" false) }}
-        {{ $style_dokus := resources.Get "scss/dokus/dokus.scss" | resources.ToCSS $options_dokus }}
-        <link rel="stylesheet" href="{{ $style_dokus.Permalink }}?v={{ now.Unix }}">
-        {{- partial "headers_custom.html" . -}}
-
-    </head>
-
-    <body>
-
-        
-
-
-        {{ if isset .Site.Params "nav" }}
-        {{ if .Site.Params.nav.enable }}
-        
+<html lang="{{ .Site.Language.Lang }}" class="no-js">
+    <head>{{ partial "head.html" . }}</head>
+    <body class="body-{{ .Kind }}{{ with .Page.Params.body_class }} {{ . }}{{ end }} type-{{.Type}}">
+    {{- if isset .Site.Params "nav" -}}
+    {{- if .Site.Params.nav.enable }} 
         <header id="navbar" class="no-print" >
             <nav class="navbar navbar-expand-md navbar-dark bg-dark " >
                 <div class="container{{if .Site.Params.nav.fluid }}-fluid{{end}}" >
@@ -43,11 +13,12 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                 
-                        <form class="d-flex" role="search">
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                 <!--
+                        <form class="d-flex" action="/search" role="search">
+                            <input  name="s" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                             <button class="btn btn-outline-success" type="submit">Search</button>
                         </form>   
+                      -->
                         <div class="navbar-nav me-auto mb-2 mb-lg-0">
                             
                         </div>

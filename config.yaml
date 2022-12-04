@@ -28,7 +28,7 @@ params:
 ## need to add in
 
 outputs:
-  section: [HTML, RSS, print]   
+  section: [HTML, RSS,JSON, print]   
   page: [HTML, print]   
   home:
     - HTML
