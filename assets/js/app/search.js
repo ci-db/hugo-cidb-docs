@@ -17,6 +17,8 @@ var fuseOptions = {
 };
 
 
+
+
 var searchQuery = param("s");
 if(searchQuery){
   $("#search-query").val(searchQuery);
@@ -27,8 +29,9 @@ if(searchQuery){
 
 
 
+
 function executeSearch(searchQuery){
-  $.getJSON(BASE_URL +"index.json", function( data ) {
+  $.getJSON(BASE_URL +"search-index.json", function( data ) {
     var pages = data;
     var fuse = new Fuse(pages, fuseOptions);
     var result = fuse.search(searchQuery);

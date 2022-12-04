@@ -18,16 +18,17 @@
         {{ $description_plain := default .Site.Params.defaultDescription .Description | markdownify | plainify }}
         <meta name="description" content="{{ $description_plain }}">
         {{ hugo.Generator }}
-        <link rel="stylesheet" href="{{ "css/bootstrap-icons/bootstrap-icons.css?v1.10.0" | relURL }}">
-        {{ $options_css1 := (dict "targetPath" "dokus.css" "outputStyle" "compressed" "enableSourceMap" false) }}
-        {{ $style1 := resources.Get "scss/dokus/dokus.scss" | resources.ToCSS $options_css1 }}
-        <link rel="stylesheet" href="{{ $style1.Permalink }}?v={{ now.Unix }}">
+        <link rel="stylesheet" href="{{ "css/bootstrap-icons/bootstrap-icons.css?v1.10.2" | relURL }}">
+        {{ $options_dokus := (dict "targetPath" "dokus.css" "outputStyle" "compressed" "enableSourceMap" false) }}
+        {{ $style_dokus := resources.Get "scss/dokus/dokus.scss" | resources.ToCSS $options_dokus }}
+        <link rel="stylesheet" href="{{ $style_dokus.Permalink }}?v={{ now.Unix }}">
         {{- partial "headers_custom.html" . -}}
+
     </head>
 
     <body>
-        
 
+        
 
 
         {{ if isset .Site.Params "nav" }}
@@ -38,11 +39,60 @@
                 <div class="container{{if .Site.Params.nav.fluid }}-fluid{{end}}" >
                     <a class="navbar-brand"  href="{{ "" | relURL }}" >{{ .Site.Title | markdownify | plainify }}
                     </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse" id="navbarCollapse">
-                    
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                 
+                        <form class="d-flex" role="search">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-success" type="submit">Search</button>
+                        </form>   
+                        <div class="navbar-nav me-auto mb-2 mb-lg-0">
+                            
+                        </div>
+                        <div class="d-flex">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                {{ $p := . -}}
+                                {{ range .Site.Menus.main -}}
+                                <li class="nav-item">
+                                {{ $active := or ($p.IsMenuCurrent "main" .) ($p.HasMenuCurrent "main" .) -}}
+                                {{ with .Page }}{{ $active = or $active ( $.IsDescendant .) }}{{ end -}}
+                                {{ $pre := .Pre -}}
+                                {{ $post := .Post -}}
+                                {{ $url := urls.Parse .URL -}}
+                                {{ $baseurl := urls.Parse $.Site.Params.Baseurl -}}   
+                                <a class="nav-link {{- if $active }} active {{- end }}" href="{{ with .Page }}{{ .RelPermalink }}{{ else }}{{ .URL | relLangURL }}{{ end }}"
+                                {{- if ne $url.Host $baseurl.Host }} target="_blank" {{- end -}}>
+                                  {{- with .Pre }}{{ $pre }}{{ end -}}
+                                  <span {{- if $active }} class="active" {{- end }}>
+                                    {{- .Name -}}
+                                  </span>
+                                  {{- with .Post }} {{ $post }}{{ end -}}
+                                </a>
+                                </li>
+                                {{ end }}
+                                <!--
+                                <li class="nav-item">
+                                  <a class="nav-link" href="#">Link</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Dropdown
+                                  </a>
+                                  <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                  </ul>
+                                </li>
+                                <li class="nav-item">
+                                  <a class="nav-link disabled">Disabled</a>
+                                </li>
+                            -->
+                              </ul>
+                        </div>
           
                     </div>
                 </div>
@@ -60,7 +110,7 @@
                 </div>
             </div>
         </main>
-
+        
         <script src="{{ "js/jquery/jquery.min.js?v=v3.6.1" | relURL }}"></script>
         <script src="{{ "js/bootstrap/bootstrap.bundle.min.js?v=v5.2.3" | relURL }}"></script>
         <script src="{{ "js/scrollbar/scrollbar.js?v=7x" | relURL }}"></script>

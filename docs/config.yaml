@@ -1,0 +1,82 @@
+
+title: "Dokus Theme"
+theme: "../../../hugo-cidb-dokus"
+
+
+params:
+  doc:
+    collapsible: true
+
+  page:
+
+  top:
+    enable: true
+    fluid: false
+
+  nav:
+    enable: true
+    fluid: false
+
+menu:
+  main:
+    - name: Test Seite
+      weight: 1000
+      url: https://qprocheck.com
+      post: <sup><i class="bi bi-box-arrow-up-right"></i></sup>
+
+
+
+defaultContentLanguage: de
+languages:
+  de:
+    title: Doku Theme
+    description: Docs
+    languageName: Germany
+    weight: 1
+
+
+## need to add in
+
+outputs:
+  section: [HTML, RSS, print]   
+  page: [HTML, print]   
+  home:
+    - HTML
+    - RSS
+    - JSON
+    - print
+    #- HTMLPDF
+
+
+outputFormats:
+  print:
+    baseName: index
+    isHTML: true
+    mediaType: text/html
+    path: _print
+    permalinkable: false
+
+#reserved words!!
+cascade:
+  - _target:
+      path: "**/doc/**"
+    type: doc
+    layout: single
+  - _target:
+      path: "**/doku/**"
+    type: doc
+    layout: single    
+  - _target:
+      path: "**/v/*/**"
+    type: doc
+    layout: single
+  - _target:
+      path: "**/v/*"
+    type: versions
+    layout: list
+
+
+module:
+  mounts:
+    - source: content/de
+      target: content
