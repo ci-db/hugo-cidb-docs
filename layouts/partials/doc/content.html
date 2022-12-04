@@ -19,7 +19,7 @@
     </ul>
 </div>
 {{- end -}}
-<div data-pagefind-body>
+<div data-pagefind-body  data-pagefind-filter="doc:test" data-pagefind-meta="doc">
 {{ $page := . }}
 {{- if isset .Params "content_from" -}}            
 {{- $page := .Site.GetPage .Params.content_from -}}

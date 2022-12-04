@@ -37,18 +37,12 @@ languages:
 ## need to add in
 
 outputs:
-  doc:  [HTML, RSS, print]   
-  section: [HTML, RSS, print]   
+  section: [HTML, RSS, print, JSON]   
   page: [HTML]   
   home:
     - HTML
     - RSS
-<<<<<<< HEAD
     - JSON
-=======
-    - print
->>>>>>> 0497f292a61e125ed66185a8b41b717fb1042a64
-    #- HTMLPDF
 
 
 outputFormats:
