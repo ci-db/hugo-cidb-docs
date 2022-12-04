@@ -1,0 +1,14 @@
+{
+  "name": "hugo-cidb-dokus",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "exec-bin node_modules/.bin/hugo && exec-bin node_modules/.bin/pagefind --source 'public' --bundle-dir ../static/_pagefind && exec-bin node_modules/.bin/hugo serve --bind=0.0.0.0 --disableFastRender",
+    "test": "echo $PWD/.."
+  },
+  "dependencies": {
+    "exec-bin": "^1.0.0",
+    "hugo-extended": "^0.107.0",
+    "pagefind": "^0.10.3"
+  }
+}
