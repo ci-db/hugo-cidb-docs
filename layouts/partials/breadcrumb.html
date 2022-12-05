@@ -13,17 +13,19 @@
 
 
 {{ $len := (len $breadcrumbArray) }}
-<div id="breadcrumb">
-    <nav  aria-label="breadcrumb">
-        <ol class="breadcrumb">            
-        {{ range $index, $element := $breadcrumbArray }}
-            <li  class="breadcrumb-item"><a href="{{ .Permalink }}">{{  partial "helper/page-title" . }} </a></li>
-        {{ end }}
-        {{ if not (isset . "hideCurrent") }}
-        <li  class="breadcrumb-item">{{ partial "helper/page-title" .current }}</a></li>
-        {{ end }}
-        </ol>
-    </nav>
+<div id="breadcrumb" class="ci-component">
+    <div class="ci-component-section">
+        <nav  aria-label="breadcrumb">
+            <ol class="breadcrumb">            
+            {{ range $index, $element := $breadcrumbArray }}
+                <li  class="breadcrumb-item"><a href="{{ .Permalink }}">{{  partial "helper/page-title" . }} </a></li>
+            {{ end }}
+            {{ if not (isset . "hideCurrent") }}
+            <li  class="breadcrumb-item">{{ partial "helper/page-title" .current }}</a></li>
+            {{ end }}
+            </ol>
+        </nav>
+    </div>
 </div>
 
 

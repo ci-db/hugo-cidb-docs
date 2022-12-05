@@ -5,55 +5,58 @@
 {{- partial "breadcrumb" (dict  "root" $root "current" . ) -}}
 
 
-<div id="doc-search-results" class="show-on-search no-print">
-    <h3>Search Result:</h3>
-    <div class="results"></div>
-</div>
-
-
-
-{{- /* Aktionbar  */ -}}
-{{- $count := 0 -}}
-{{- range $index, $element :=  where $root.Pages "Type" "doc/pdf" -}}
-{{-   $count = add $index 1 -}}
-{{- end -}}
-{{- if ne $count 0 -}}
-
-
-<div class="main-actions no-print hide-on-search">
-    <ul class="nav justify-content-end">
-
-        
-{{-   range where $root.Pages "Type" "doc/pdf" -}}
-        <li class="nav-item"><a href="{{.Permalink}}" target="_blank">{{ if ne .Title "" }}{{ .Title }}{{ else }}Print{{ end }}</a></li>
-{{-   end -}}
-    </ul>
-</div>
-{{- end -}}
-<div class="hide-on-search" id="ci-page-content" data-pagefind-body  data-pagefind-filter="doc:test" data-pagefind-meta="doc">
-{{ $page := . }}
-{{- if isset .Params "content_from" -}}            
-{{- $page := .Site.GetPage .Params.content_from -}}
-{{- end -}}
-<h1>{{ $page.Title }}</h1>
-{{- if ne $page ".Description" "" -}}
-{{ $page.Description }}
-{{ end }}
-{{- $page.Content -}}  
-</div>
-
-
-<div class="hide-on-search d-flex justify-content-center mb-3">
-    <div class="p-2">
-        {{ if .NextInSection  }}
-        <a class="link-reverse" href="{{ .NextInSection.Permalink }}">< {{ .NextInSection.Title | truncate 50 "..." }}</a>
-        {{ end }}        
+<div class="ci-component">
+    <div id="doc-search-results" class="ci-component-section show-on-search no-print">
+        <h3>Search Result:</h3>
+        <div class="results"></div>
     </div>
-    <div class="p-2"></div>
-    <div class="p-2">
-        {{ if .PrevInSection }}
-        <a class="link-reverse" href="{{ .PrevInSection.Permalink }}">{{ .PrevInSection.Title | truncate 50 "..." }} ></a>
-        {{ end }}        
+
+
+
+    {{- /* Aktionbar  */ -}}
+    {{- $count := 0 -}}
+    {{- range $index, $element :=  where $root.Pages "Type" "doc/pdf" -}}
+    {{-   $count = add $index 1 -}}
+    {{- end -}}
+    {{- if ne $count 0 -}}
+
+
+    <div class="main-actions no-print hide-on-search ci-component-section">
+        <ul class="nav justify-content-end">
+
+            
+    {{-   range where $root.Pages "Type" "doc/pdf" -}}
+            <li class="nav-item"><a href="{{.Permalink}}" target="_blank">{{ if ne .Title "" }}{{ .Title }}{{ else }}Print{{ end }}</a></li>
+    {{-   end -}}
+        </ul>
+    </div>
+    {{- end -}}
+    <div id="ci-page-content" class="hide-on-search ci-component-section"  >
+    
+    {{ $page := . }}
+    {{- if isset .Params "content_from" -}}            
+    {{- $page := .Site.GetPage .Params.content_from -}}
+    {{- end -}}
+    <h1>{{ $page.Title }}</h1>
+    {{- if ne $page ".Description" "" -}}
+    {{ $page.Description }}
+    {{ end }}
+    {{- $page.Content -}}  
+    </div>
+
+
+    <div class="ci-component-section hide-on-search d-flex justify-content-center mb-3">
+        <div class="p-2">
+            {{ if .NextInSection  }}
+            <a class="link-reverse" href="{{ .NextInSection.Permalink }}">< {{ .NextInSection.Title | truncate 50 "..." }}</a>
+            {{ end }}        
+        </div>
+        <div class="p-2"></div>
+        <div class="p-2">
+            {{ if .PrevInSection }}
+            <a class="link-reverse" href="{{ .PrevInSection.Permalink }}">{{ .PrevInSection.Title | truncate 50 "..." }} ></a>
+            {{ end }}        
+        </div>
     </div>
 </div>
 
