@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "exec-bin node_modules/.bin/hugo --cleanDestinationDir  && exec-bin node_modules/.bin/pagefind --source 'public' --bundle-dir ../static/_pagefind && exec-bin node_modules/.bin/hugo serve --bind=0.0.0.0 --disableFastRender",
+    "gen": "exec-bin node_modules/.bin/hugo --cleanDestinationDir -d 'public_pagefind' && exec-bin node_modules/.bin/pagefind --source 'public_pagefind' --bundle-dir ../static/_pagefind",
+    "start": "npm run gen && exec-bin node_modules/.bin/hugo serve --bind=0.0.0.0 --disableFastRender",
+    "build": "npm run gen && exec-bin node_modules/.bin/hugo --cleanDestinationDir",
     "test": "echo $PWD/.."
   },
   "dependencies": {

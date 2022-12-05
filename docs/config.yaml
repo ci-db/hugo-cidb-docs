@@ -1,8 +1,12 @@
 
 title: "Dokus Theme"
+baseURL: https://ci-db.github.io/dokus-site/
 theme: "../.."
 
+
+
 params:
+  searchengine: pagefind #fuse, pagefind
   doc:
     collapsible: true
 
@@ -37,12 +41,13 @@ languages:
 ## need to add in
 
 outputs:
-  section: [HTML, RSS, print, searchindex, searchresult]   
+  section: [HTML, RSS, print, searchindex]   
   page: [HTML]   
   home:
     - HTML
     - RSS
     - JSON
+    - docpaths
 
 
 outputFormats:
@@ -56,13 +61,12 @@ outputFormats:
     baseName: _searchindex 
     isHTML: false
     mediaType: application/json
-    permalinkable: false
-  searchresult:
-    baseName: index
-    isHTML: true
-    mediaType: text/html
-    path: _searchresult
-    permalinkable: false    
+    permalinkable: false  
+  docpaths:
+    baseName: _docpaths
+    isHTML: false
+    mediaType: application/json
+    permalinkable: false      
 
 #reserved words!!
 cascade:

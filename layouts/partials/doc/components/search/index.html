@@ -1,0 +1,27 @@
+<div class="ci-search ci-component-section">
+    {{ if eq .Site.Params.searchengine "fuse" }}
+    <div class="col-auto">
+        <label for="search" class="visually-hidden">Search in Doc</label>
+        <input type="input" class="form-control" id="doc-search" placeholder="Search in Doc" onkeyup="startTimer()">
+    </div>
+    <div class="col-auto mt-2 show-on-search">
+        <button class="btn btn-primary" type="button" onclick="cancleSearch()"><i class="bi bi-backspace"></i> Back</button>
+    </div>    
+    {{ else if  eq .Site.Params.searchengine "pagefind"  }} 
+    <div class="col-auto">
+        <label for="search" class="visually-hidden">Search in Doc</label>
+        <input type="input" class="form-control" id="doc-search" placeholder="Search in Doc">
+    </div> 
+    <div class="col-auto mt-2 show-on-search">
+        <button class="btn btn-primary" type="button" id="doc-search-cancle" ><i class="bi bi-backspace"></i> Back</button>
+    </div>      
+    {{ end }}  
+</div> 
+{{ define "doc-search-scripts" }}
+{{ if eq .Site.Params.searchengine "fuse" }}
+{{- partial "doc/components/search/fuse" .  -}} 
+{{ else if  eq .Site.Params.searchengine "pagefind"  }} 
+{{- partial "doc/components/search/pagefind" .  -}} 
+{{ end }}
+{{ end }}
+

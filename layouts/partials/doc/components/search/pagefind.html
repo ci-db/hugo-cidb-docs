@@ -1,0 +1,124 @@
+{{- $root :=  partial "doc/helper/get-doc-root" . -}}
+<script id="doc-search-result-template" type="text/x-js-template">
+  <div id="summary-${key}">
+    <h4><a href="${link}">${title}</a></h4>
+    <p>${snippet}</p>
+  </div>
+</script>
+<script id="doc-search-result-template3" type="text/x-js-template">
+  <div id="summary-${key}">
+    <h4><a href="${link}">${title}</a></h4>
+    <p>${snippet}</p>
+    ${ isset tags }<p>Tags: ${tags}</p>${ end }
+    ${ isset categories }<p>Categories: ${categories}</p>${ end }
+  </div>
+</script>
+
+<script type="module">
+
+  $("#doc-search").on("keyup", (event) => {
+    startTimer()
+  });
+
+  $("#doc-search-cancle").on("click", (event) => {
+    $( "#doc-search" ).val("");
+    $( ".hide-on-search" ).show();
+    $( ".show-on-search" ).hide();     
+  });
+
+  function simpleDelayTimer() {
+    var delay = 500;
+    var timer = null;
+    return {
+      start:
+        function () {
+          this.timer = setTimeout(function () {
+            if ($("#doc-search").val().trim() != "") {
+              $(".hide-on-search").hide();
+              $(".show-on-search").show();
+              executeSearch($("#doc-search").val());
+
+            } else {
+              $(".hide-on-search").show();
+              $(".show-on-search").hide();
+
+            }
+
+          }, delay);
+          return timer;
+        },
+      reset: function () {
+        clearTimeout(this.timer);
+      }
+    }
+  }
+
+
+  var timer = simpleDelayTimer();
+  function startTimer() {
+    if (document.getElementById('doc-search').value.trim() == "") {
+      $(".hide-on-search").show();
+      $(".show-on-search").hide();
+      return;
+    }
+
+
+    timer.reset();
+    timer.start();
+  }
+
+  const pagefind = await import( {{ relURL "_pagefind/pagefind.js" }});
+
+  await pagefind.options({
+    baseUrl: '{{ relURL "" }}'
+  });
+
+  async function executeSearch(query) {
+    const search = await pagefind.search(query);
+    const resultAll = await Promise.all(search.results.slice(0, 100).map(r => r.data()));
+ 
+    /*
+    console.log("test", {{ relURL "/" }})
+    var rootPath = "{{ $root.Permalink }}"
+    if( /^\/\//.test(rootPath) ){
+      rootPath = rootPath.substr(1);
+    }    
+ 
+*/
+    const result = resultAll.filter(function(element){
+      return  element.url.indexOf("{{ relURL "" }}{{ with $root.File }}{{ .Dir  }}{{ end }}") == 0; 
+    });
+
+
+    var templateDefinition = $('#doc-search-result-template').html();
+
+    $('#doc-search-results .results').html("");
+
+    result.forEach((item, key)=> {
+
+
+      var templateDefinition = $('#doc-search-result-template').html();
+      //replace values
+      var output = render(templateDefinition,{key:key,title:item.meta.title,link:item.url,snippet:item.excerpt});
+      $('#doc-search-results .results').append(output);
+  
+    })
+
+
+  }
+
+  function render(templateString, data) {
+
+  
+    //now any conditionals removed we can do simple substitution
+
+    var key, find, re;
+    for (key in data) {
+      find = '\\$\\{\\s*' + key + '\\s*\\}';
+      re = new RegExp(find, 'g');
+      templateString = templateString.replace(re, data[key]);
+    }
+    return templateString;
+  }
+
+</script>
