@@ -37,7 +37,7 @@ languages:
 ## need to add in
 
 outputs:
-  section: [HTML, RSS, print, JSON]   
+  section: [HTML, RSS, print, searchindex, searchresult]   
   page: [HTML]   
   home:
     - HTML
@@ -50,8 +50,19 @@ outputFormats:
     baseName: index
     isHTML: true
     mediaType: text/html
-    path: _print
+    path: _print    
     permalinkable: false
+  searchindex:
+    baseName: _searchindex 
+    isHTML: false
+    mediaType: application/json
+    permalinkable: false
+  searchresult:
+    baseName: index
+    isHTML: true
+    mediaType: text/html
+    path: _searchresult
+    permalinkable: false    
 
 #reserved words!!
 cascade:

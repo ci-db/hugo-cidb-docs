@@ -1,12 +1,14 @@
 {{- $root :=  partial "doc/helper/get-doc-root" . -}}
 
 <div id="aside">
-    <nav class="nav flex-column">    
-        {{ if ne .File $root.File }}
-        <a class="nav-link" href="{{ if .IsSection }}{{ .Permalink }}{{ else }}{{ .Parent.Permalink }}{{ end }}/_print" target="_blank"><i class="bi bi-printer"></i> Print Section</a>
-        {{ end }}
-        <a class="nav-link" href="{{ $root.Permalink }}/_print"  target="_blank"><i class="bi bi-printer"></i> Print All</a>
-    </nav>
-    <hr>
-    {{ .TableOfContents }}
+    <div class="hide-on-search">
+        <nav class="nav flex-column">    
+            {{ if ne .File $root.File }}
+            <a class="nav-link" href="{{ if .IsSection }}{{ .Permalink }}{{ else }}{{ .Parent.Permalink }}{{ end }}/_print" target="_blank"><i class="bi bi-printer"></i> Print Section</a>
+            {{ end }}
+            <a class="nav-link" href="{{ $root.Permalink }}/_print"  target="_blank"><i class="bi bi-printer"></i> Print All</a>
+        </nav>
+        <hr>
+        {{ .TableOfContents }}
+    </div>
 </div>

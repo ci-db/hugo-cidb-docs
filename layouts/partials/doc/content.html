@@ -1,7 +1,16 @@
 
+
 {{- $root :=  partial "doc/helper/get-doc-root" . -}}
 {{- $page :=  . -}}
 {{- partial "breadcrumb" (dict  "root" $root "current" . ) -}}
+
+
+<div id="doc-search-results" class="show-on-search no-print">
+    <h3>Search Result:</h3>
+    <div class="results"></div>
+</div>
+
+
 
 {{- /* Aktionbar  */ -}}
 {{- $count := 0 -}}
@@ -9,7 +18,9 @@
 {{-   $count = add $index 1 -}}
 {{- end -}}
 {{- if ne $count 0 -}}
-<div class="main-actions no-print">
+
+
+<div class="main-actions no-print hide-on-search">
     <ul class="nav justify-content-end">
 
         
@@ -19,7 +30,7 @@
     </ul>
 </div>
 {{- end -}}
-<div data-pagefind-body  data-pagefind-filter="doc:test" data-pagefind-meta="doc">
+<div class="hide-on-search" id="ci-page-content" data-pagefind-body  data-pagefind-filter="doc:test" data-pagefind-meta="doc">
 {{ $page := . }}
 {{- if isset .Params "content_from" -}}            
 {{- $page := .Site.GetPage .Params.content_from -}}
@@ -32,7 +43,7 @@
 </div>
 
 
-<div class="d-flex justify-content-center mb-3">
+<div class="hide-on-search d-flex justify-content-center mb-3">
     <div class="p-2">
         {{ if .NextInSection  }}
         <a class="link-reverse" href="{{ .NextInSection.Permalink }}">< {{ .NextInSection.Title | truncate 50 "..." }}</a>
