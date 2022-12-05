@@ -1,34 +1,12 @@
 
 title: "Dokus Theme"
-baseURL: https://ci-db.github.io/dokus-site/
+#baseURL: https://ci-db.github.io/dokus-site/
 theme: "../.."
 
-
-
 params:
-  searchengine: pagefind #fuse, pagefind
-  doc:
-    collapsible: true
+  searchengine: fuse #fuse, pagefind
 
-  page:
-
-  top:
-    enable: true
-    fluid: false
-
-  nav:
-    enable: true
-    fluid: false
-
-menu:
-  main:
-    - name: Test Seite
-      weight: 1000
-      url: https://qprocheck.com
-      post: <sup><i class="bi bi-box-arrow-up-right"></i></sup>
-
-
-
+## Language
 defaultContentLanguage: de
 languages:
   de:
@@ -37,47 +15,40 @@ languages:
     languageName: Germany
     weight: 1
 
+module:
+  mounts:
+    - source: content/de
+      target: content
 
-## need to add in
+# Menue
+
+menu:
+  main:
+    - name: Test Seite
+      weight: 1000
+      url: https://qprocheck.com
+      post: <sup><i class="bi bi-box-arrow-up-right"></i></sup>
+    - name: Test2
+      weight: 1000
+      url: /search/
+
 
 outputs:
-  section: [HTML, RSS, print, searchindex]   
+  section: [HTML, RSS, PRINT, FUSE_SEARCH_DOC]   
   page: [HTML]   
   home:
     - HTML
     - RSS
     - JSON
-    - docpaths
+    - FUSE_SEARCH
+    #- docpaths
 
-
-outputFormats:
-  print:
-    baseName: index
-    isHTML: true
-    mediaType: text/html
-    path: _print    
-    permalinkable: false
-  searchindex:
-    baseName: _searchindex 
-    isHTML: false
-    mediaType: application/json
-    permalinkable: false  
-  docpaths:
-    baseName: _docpaths
-    isHTML: false
-    mediaType: application/json
-    permalinkable: false      
-
-#reserved words!!
+## NEED TO IMORT START
 cascade:
   - _target:
       path: "**/doc/**"
     type: doc
-    layout: single
-  - _target:
-      path: "**/doku/**"
-    type: doc
-    layout: single    
+    layout: single  
   - _target:
       path: "**/v/*/**"
     type: doc
@@ -86,9 +57,3 @@ cascade:
       path: "**/v/*"
     type: versions
     layout: list
-
-
-module:
-  mounts:
-    - source: content/de
-      target: content

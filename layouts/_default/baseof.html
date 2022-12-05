@@ -2,78 +2,7 @@
 <html lang="{{ .Site.Language.Lang }}" class="no-js">
     <head>{{ partial "head.html" . }}</head>
     <body class="body-{{ .Kind }}{{ with .Page.Params.body_class }} {{ . }}{{ end }} type-{{.Type}}">
-    {{- if isset .Site.Params "nav" -}}
-    {{- if .Site.Params.nav.enable }} 
-        <header id="navbar" class="no-print" >
-            <nav class="navbar navbar-expand-md navbar-dark bg-dark " >
-                <div class="container{{if .Site.Params.nav.fluid }}-fluid{{end}}" >
-                    <a class="navbar-brand"  href="{{ "" | relURL }}" >{{ .Site.Title | markdownify | plainify }}
-                    </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                 <!--
-                        <form class="d-flex" action="/search" role="search">
-                            <input  name="s" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-success" type="submit">Search</button>
-                        </form>   
-                      -->
-                        <div class="navbar-nav me-auto mb-2 mb-lg-0">
-                            
-                        </div>
-                        <div class="d-flex">
-                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                                {{ $p := . -}}
-                                {{ range .Site.Menus.main -}}
-                                <li class="nav-item">
-                                {{ $active := or ($p.IsMenuCurrent "main" .) ($p.HasMenuCurrent "main" .) -}}
-                                {{ with .Page }}{{ $active = or $active ( $.IsDescendant .) }}{{ end -}}
-                                {{ $pre := .Pre -}}
-                                {{ $post := .Post -}}
-                                {{ $url := urls.Parse .URL -}}
-                                {{ $baseurl := urls.Parse $.Site.Params.Baseurl -}}   
-                                <a class="nav-link {{- if $active }} active {{- end }}" href="{{ with .Page }}{{ .RelPermalink }}{{ else }}{{ .URL | relLangURL }}{{ end }}"
-                                {{- if ne $url.Host $baseurl.Host }} target="_blank" {{- end -}}>
-                                  {{- with .Pre }}{{ $pre }}{{ end -}}
-                                  <span {{- if $active }} class="active" {{- end }}>
-                                    {{- .Name -}}
-                                  </span>
-                                  {{- with .Post }} {{ $post }}{{ end -}}
-                                </a>
-                                </li>
-                                {{ end }}
-                                <!--
-                                <li class="nav-item">
-                                  <a class="nav-link" href="#">Link</a>
-                                </li>
-                                <li class="nav-item dropdown">
-                                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Dropdown
-                                  </a>
-                                  <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                  </ul>
-                                </li>
-                                <li class="nav-item">
-                                  <a class="nav-link disabled">Disabled</a>
-                                </li>
-                            -->
-                              </ul>
-                        </div>
-          
-                    </div>
-                </div>
-            </nav>
-        </header>
-        {{ end }}
-        {{ end }}
-
-
-        
+      {{ partial "nav.html" . }}
         <main id="main">
             <div class="main-container container{{ if .Site.Params.page.fluid }}-fluid{{ end }}">
                 <div class="row">    
@@ -81,36 +10,18 @@
                 </div>
             </div>
         </main>
-        
+        {{/* partial "footer.html" . */}}           
+        {{/* partial "copyright.html" . */}} 
         <script src="{{ "js/jquery/jquery.min.js?v=v3.6.1" | relURL }}"></script>
         <script src="{{ "js/bootstrap/bootstrap.bundle.min.js?v=v5.2.3" | relURL }}"></script>
         <script src="{{ "js/scrollbar/scrollbar.js?v=7x" | relURL }}"></script>
         {{ if eq .Site.Params.searchengine "fuse" }}
         <script src="{{ "js/fuse/fuse.min.js?v=v3.2.0" | relURL }}"></script>
-         <!-- <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.js"></script> -->
+        <!-- <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.js"></script> -->
         <script src="{{ "js/jquery/jquery.mark.min.js?v=v8.11.1" | relURL }}"></script>
         {{ end }}
-        <script>
-            /*
-            if ( $( "#sidebar" ).length ) {
-                Scrollbar.init(document.querySelector('#sidebar'));            
-            }
-            if ( $( "#sidebar" ).length ) {
-                Scrollbar.init(document.querySelector('#sidebar'));            
-            }
-
-*/
-
-          
-           
-           // Scrollbar.init(document.querySelector('#aside'));
-        </script>
         {{ block "doc-search-scripts" . }}{{ end }}        
-        {{ block "scripts" . }}{{ end }}
-
-        {{/* partial "footer.html" . */}}           
-        {{/* partial "copyright.html" . */}}           
-
+        {{ block "scripts" . }}{{ end }}          
     </body>
 
 </html>
