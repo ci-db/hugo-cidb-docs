@@ -4,7 +4,7 @@ title: "Dokus Theme"
 theme: "../.."
 
 params:
-  searchengine: fuse #fuse, pagefind
+  searchengine: pagefind #fuse, pagefind
 
 ## Language
 defaultContentLanguage: de
@@ -28,9 +28,6 @@ menu:
       weight: 1000
       url: https://qprocheck.com
       post: <sup><i class="bi bi-box-arrow-up-right"></i></sup>
-    - name: Test2
-      weight: 1000
-      url: /search/
 
 
 outputs:
@@ -40,7 +37,6 @@ outputs:
     - HTML
     - RSS
     - JSON
-    - FUSE_SEARCH
     #- docpaths
 
 ## NEED TO IMORT START

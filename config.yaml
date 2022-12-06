@@ -6,8 +6,6 @@ outputs:
   home:
     - HTML
     - RSS
-    - JSON
-    - SEARCH
   #  - DOCPATHS
 
 cascade:
@@ -49,12 +47,6 @@ outputFormats:
     isHTML: false
     mediaType: application/json
     permalinkable: false  
-  fuse_search:
-    baseName: index 
-    isHTML: true
-    mediaType: text/html
-    permalinkable: false  
-    path: search
   docpaths:
     baseName: _docpaths
     isHTML: false
