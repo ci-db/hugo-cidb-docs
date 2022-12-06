@@ -2,7 +2,15 @@
 
 {{- $root :=  partial "doc/helper/get-doc-root" . -}}
 {{- $page :=  . -}}
-{{- partial "breadcrumb" (dict  "root" $root "current" . ) -}}
+{{- $rootBreandcrumb := $root -}}
+{{ with $rootBreandcrumb.Parent }}
+    {{ if eq .Type "docs" }}
+        {{- $rootBreandcrumb = . -}}
+    {{ end }}
+{{ end }}
+
+
+{{- partial "breadcrumb" (dict  "root" $rootBreandcrumb "current" . ) -}}
 
 
 <div class="ci-component">
@@ -39,7 +47,7 @@
     {{- end -}}
     <h1>{{ $page.Title }}</h1>
     {{- if ne $page ".Description" "" -}}
-    {{ $page.Description }}
+    <p class="content-description">{{ $page.Description }}</p>
     {{ end }}
     {{- $page.Content -}}  
     </div>

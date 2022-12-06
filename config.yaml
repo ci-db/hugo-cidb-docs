@@ -16,6 +16,9 @@ cascade:
       path: "**/v/*/**"
     type: doc
   - _target:
+      path: "**/docs/*"
+    type: docs    
+  - _target:
       path: "**/v/*"
     type: versions
     layout: list

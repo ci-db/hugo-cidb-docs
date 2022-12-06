@@ -1,0 +1,14 @@
+{{ define "main" }}
+<div>
+    <h1>Docs:</h1>
+    {{ range .Sections.ByWeight }}
+    <div>
+        <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+        {{ with .Description }}
+         <p>{{ . }}</p>
+         {{ end }}
+    </div>
+    <hr>
+    {{ end }}
+</div>
+{{ end }}
