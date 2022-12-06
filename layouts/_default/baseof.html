@@ -16,8 +16,8 @@
         <script src="{{ "js/bootstrap/bootstrap.bundle.min.js?v=v5.2.3" | relURL }}"></script>
         <script src="{{ "js/scrollbar/scrollbar.js?v=7x" | relURL }}"></script>
         {{ if eq .Site.Params.searchengine "fuse" }}
-        <script src="{{ "js/fuse/fuse.min.js?v=v3.2.0" | relURL }}"></script>
-        <!-- <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.js"></script> -->
+       <script src="{{ "js/fuse/fuse.min.js?v=v3.2.0" | relURL }}"></script> 
+          <!--<script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.js"></script> -->
         <script src="{{ "js/jquery/jquery.mark.min.js?v=v8.11.1" | relURL }}"></script>
         {{ end }}
         {{ block "doc-search-scripts" . }}{{ end }}        

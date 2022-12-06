@@ -1,6 +1,9 @@
 {{- $root := . -}}
+
 <script type="module">
 
+  var pages = null;
+  
   const summaryInclude=60;
   const fuseOptions = {
     shouldSort: true,
@@ -84,9 +87,12 @@
   async function executeSearch(searchQuery) {
 
     {{ if eq .Site.Params.searchengine "fuse" }}
-  var response =  await fetch({{ printf "%s_searchindex.json" $root.RelPermalink }});
-    const data = await response.json();
-      var pages = data;
+    if (pages == null) {
+      var response =  await fetch({{ printf "%s_searchindex.json" $root.RelPermalink }});
+      const data = await response.json();
+      pages = data;
+    }
+
       var fuse = new Fuse(pages, fuseOptions);
       var result = fuse.search(searchQuery);
 

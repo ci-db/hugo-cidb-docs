@@ -4,7 +4,7 @@ title: "Dokus Theme"
 theme: "../.."
 
 params:
-  searchengine: pagefind #fuse, pagefind
+  searchengine: fuse #fuse, pagefind
 
 ## Language
 defaultContentLanguage: de
