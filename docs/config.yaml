@@ -37,6 +37,7 @@ outputs:
     - HTML
     - RSS
     - JSON
+    - FUSE_SEARCH_DOC
     #- docpaths
 
 ## NEED TO IMORT START
