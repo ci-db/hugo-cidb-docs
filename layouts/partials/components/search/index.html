@@ -1,3 +1,5 @@
+
+
 <div class="ci-search ci-component-section">    
     <div class="col-auto">
         <label for="search" class="visually-hidden">Search in Doc</label>
@@ -18,8 +20,8 @@
       ${ isset categories }<p>Categories: ${categories}</p>${ end }
     </div>
 </script>
-{{- $root :=  partial "doc/helper/get-doc-root" . -}}
-{{- partial "components/search/script" $root   }} 
+
+{{- partial "components/search/script" .Site.Home  }} 
 
 
 
