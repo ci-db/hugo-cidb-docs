@@ -2,12 +2,13 @@
 {{- $root :=  partial "doc/helper/get-doc-root" . -}}
 {{- if eq $root.File .File -}}
 {{- $data := newScratch -}}
+{{- $data2 := newScratch -}}
 {{- $data.Add "pages" slice -}}
 {{- partial "doc/searchindex/pages" (dict "data" $data "root" $root "item" .  "stufe" 0 ) -}}
-{{- $.Scratch.Add "index" slice -}}
+{{- $data2.Add "index" slice -}}
 {{- range ($data.Get "pages") -}}
-    {{- $.Scratch.Add "index" (dict "title" .Title "tags" .Params.tags "categories" .Params.categories "contents" .Plain "permalink" .Permalink) -}}
+    {{- $data2.Add "index" (dict "title" .Title "tags" .Params.tags "categories" .Params.categories "contents" .Plain "permalink" .Permalink) -}}
 {{- end -}}
-{{- $.Scratch.Get "index" | jsonify -}}
+{{- $data2.Get "index" | jsonify -}}
 {{- end -}}
 {{- end -}}
