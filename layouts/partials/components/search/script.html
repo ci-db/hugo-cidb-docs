@@ -3,7 +3,6 @@
 <script type="module">
 
   
-$( document ).ready(function() {
 
   var pages = null;
   
@@ -79,7 +78,7 @@ $( document ).ready(function() {
   
   {{ if eq .Site.Params.searchengine "pagefind" }}
 
-  const pagefind = await import( {{ relURL "_pagefind/pagefind.js" }});
+  const pagefind = await import({{ relURL "_pagefind/pagefind.js" }});
 
   await pagefind.options({
     baseUrl: '{{ relURL "" }}'
@@ -219,5 +218,5 @@ $( document ).ready(function() {
       return templateString;
     }
 
-});
+
 </script>
