@@ -1,15 +1,18 @@
-
+{{- $placeholder := "Search All" -}}
+{{- if eq .Type "doc" -}}
+{{- $placeholder = "Search in Doc" -}}
+{{- end -}}
 
 <div class="ci-search ci-component-section">    
     <div class="col-auto">
-        <label for="search" class="visually-hidden">Search in Doc</label>
-        <input type="input" class="form-control" id="doc-search" placeholder="Search in Doc">
+
+        <label for="search" class="visually-hidden">Search</label>
+        <input type="input" class="form-control" id="doc-search" placeholder="{{ $placeholder }}">
     </div> 
     <div class="col-auto mt-2 show-on-search">
         <button class="btn btn-primary" type="button" id="doc-search-cancle" ><i class="bi bi-backspace"></i> Back</button>
     </div>      
 </div> 
-
 
 
 <script id="doc-search-result-template" type="text/x-js-template">
@@ -21,7 +24,8 @@
     </div>
 </script>
 
-{{- partial "components/search/script" .Site.Home  }} 
+
+{{- partial "components/search/script" .  }} 
 
 
 

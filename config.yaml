@@ -42,14 +42,8 @@ outputFormats:
     mediaType: text/html
     path: _print    
     permalinkable: false
-  fuse_search_doc:
+  fuse_search:
     baseName: _searchindex 
     isHTML: false
     mediaType: application/json
     permalinkable: false  
-  docpaths:
-    baseName: _docpaths
-    isHTML: false
-    mediaType: application/json
-    permalinkable: false      
-

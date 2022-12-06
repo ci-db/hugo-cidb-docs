@@ -31,13 +31,12 @@ menu:
 
 
 outputs:
-  section: [HTML, RSS, PRINT, FUSE_SEARCH_DOC]   
+  section: [HTML, RSS, PRINT, FUSE_SEARCH]   
   page: [HTML]   
   home:
     - HTML
     - RSS
-
-    - FUSE_SEARCH_DOC
+    - FUSE_SEARCH
     #- docpaths
 
 ## NEED TO IMORT START

@@ -1,5 +1,4 @@
 
-{{- $root := . -}}
 
 <script type="module">
 
@@ -92,7 +91,7 @@ $( document ).ready(function() {
 
     {{ if eq .Site.Params.searchengine "fuse" }}
     if (pages == null) {
-      var response =  await fetch({{ printf "%s_searchindex.json" $root.RelPermalink }});
+      var response =  await fetch({{ printf "%s_searchindex.json" .RelPermalink }});
       const data = await response.json();
       pages = data;
     }
@@ -106,7 +105,7 @@ $( document ).ready(function() {
     const resultAll = await Promise.all(search.results.slice(0, 100).map(r => r.data()));
 
     const result = resultAll.filter(function(element){
-     return  element.url.indexOf("{{ relURL "" }}{{ with $root.File }}{{ .Dir  }}{{ end }}") == 0;
+     return  element.url.indexOf("{{ relURL "" }}{{ with .File }}{{ .Dir  }}{{ end }}") == 0;
      
     });
 

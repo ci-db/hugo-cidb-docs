@@ -1,8 +1,8 @@
-{{- $root :=  partial "doc/helper/get-doc-root" . -}}
+{{- $root :=  . -}}
 {{- if eq $root.File .File -}}
 {{- $data := newScratch -}}
 {{- $data.Add "pages" slice -}}
-{{- partial "doc/searchindex/pages" (dict "data" $data "root" $root "item" .  "stufe" 0 ) -}}
+{{- partial "searchindex/pages" (dict "data" $data "root" $root "item" .  "stufe" 0 ) -}}
 {{- $.Scratch.Add "index" slice -}}
 {{- range ($data.Get "pages") -}}
     {{- $.Scratch.Add "index" (dict "title" .Title "tags" .Params.tags "categories" .Params.categories "contents" .Plain "permalink" .Permalink) -}}
