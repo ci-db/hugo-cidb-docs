@@ -16,8 +16,11 @@ cascade:
       path: "**/v/*/**"
     type: doc
   - _target:
-      path: "**/docs/*"
-    type: docs    
+      path: "**/docs/**"
+    type: doc
+  - _target:
+      path: "**/docs/_index.md"
+    type: docs         
   - _target:
       path: "**/v/*"
     type: versions

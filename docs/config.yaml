@@ -42,14 +42,26 @@ outputs:
 ## NEED TO IMORT START
 cascade:
   - _target:
-      path: "**/doc/**"
-    type: doc
+      path: "**/docs/_index.md"
+    type: docs
     layout: single  
   - _target:
-      path: "**/v/*/**"
+      path: "**/docs/**"
     type: doc
-    layout: single
-  - _target:
-      path: "**/v/*"
-    type: versions
-    layout: list
+    layout: single  
+
+
+
+
+     
+
+  #- _target:
+  #    path: "**/v/*/**"
+  #  type: doc
+  #  layout: single
+
+
+  #- _target:
+  #    path: "**/v/*"
+  #  type: versions
+  #  layout: list
