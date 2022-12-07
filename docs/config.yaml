@@ -26,7 +26,7 @@ menu:
   main:
     - name: Test Seite
       weight: 1000
-      url: https://qprocheck.com
+      url: https://example.com
       post: <sup><i class="bi bi-box-arrow-up-right"></i></sup>
 
 
@@ -38,30 +38,3 @@ outputs:
     - RSS
     - FUSE_SEARCH
     #- docpaths
-
-## NEED TO IMORT START
-cascade:
-  - _target:
-      path: "**/docs/_index.md"
-    type: docs
-    layout: single  
-  - _target:
-      path: "**/docs/**"
-    type: doc
-    layout: single  
-
-
-
-
-     
-
-  #- _target:
-  #    path: "**/v/*/**"
-  #  type: doc
-  #  layout: single
-
-
-  #- _target:
-  #    path: "**/v/*"
-  #  type: versions
-  #  layout: list
