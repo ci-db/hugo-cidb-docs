@@ -52,21 +52,39 @@
     {{- $page.Content -}}  
     </div>
 
-
+    <!--
+  
+    {{  (index .Pages 0) }}
+    -->
+  
+<!--
     <div class="ci-component-section hide-on-search d-flex justify-content-center mb-3">
         <div class="p-2">
+            <p>  PrevInSection {{ .PrevInSection }}</p>
+            <p>  Prev {{ .Prev }}</p>
+            <p>  PArenmtPrev {{ .Parent.Prev }}</p>
+            <p>  PArenmtPrev {{ .Parent.PrevInSection }}</p>
+         
             {{ if .NextInSection  }}
-            <a class="link-reverse" href="{{ .NextInSection.Permalink }}">< {{ .NextInSection.Title | truncate 50 "..." }}</a>
-            {{ end }}        
+            <a class="link-reverse" href="{{ .NextInSection.Permalink }}">< test {{ .NextInSection.Title | truncate 50 "..." }}</a>
+            {{ end }}                
+            {{with .Site.Pages.Next . }}
+            <a class="link-reverse" href="{{ .Permalink }}">< {{ .Title | truncate 50 "..." }}</a>
+            {{end}}    
         </div>
         <div class="p-2"></div>
         <div class="p-2">
             {{ if .PrevInSection }}
             <a class="link-reverse" href="{{ .PrevInSection.Permalink }}">{{ .PrevInSection.Title | truncate 50 "..." }} ></a>
-            {{ end }}        
+            {{ end }}       
+            {{with .Site.Pages.Prev . }}
+            <a class="link-reverse" href="{{ .Permalink }}">{{ .Title | truncate 50 "..." }} ></a>
+            {{end}}    
         </div>
     </div>
+    -->
 </div>
+
 
 
 {{- define "scripts" -}}

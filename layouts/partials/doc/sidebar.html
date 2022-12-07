@@ -2,6 +2,8 @@
 
 <div id="sidebar" class="ci-component">
     {{- $root :=  partial "doc/helper/get-doc-root" . -}}
+
+    <div><a class="nav-link ajax-call{{ if eq .File $root.File }} active{{ end }}" href="{{ $root.Permalink }}">{{ $root.Title }}</a></div>
     {{- partial "components/search/index" $root  -}} 
     {{- partial "doc/components/navi" .  -}} 
 </div>
