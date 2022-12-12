@@ -27,25 +27,12 @@ outputs:
     - FUSE_SEARCH
   #  - DOCPATHS
 
-cascade:
-  - _target:
-      path: "**/doc/**"
-    type: doc
-  - _target:
-      path: "**/v/*/**"
-    type: doc
-  - _target:
-      path: "**/docs/**"
-    type: doc
-  - _target:
-      path: "**/docs/_index.md"
-    type: docs         
-  - _target:
-      path: "**/v/*"
-    type: versions
-    layout: list
-
-## NEED TO IMORT END
+languages:
+  de:
+    title: Doku Theme
+    description: Docs
+    languageName: Germany
+    weight: 1
 
 
 params:
