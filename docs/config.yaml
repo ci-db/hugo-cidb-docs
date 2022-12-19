@@ -3,6 +3,7 @@ title: "Dokus Theme"
 #baseURL: https://ci-db.github.io/dokus-site/
 theme: "../.."
 
+
 params:
   searchengine: pagefind #fuse, pagefind
 
