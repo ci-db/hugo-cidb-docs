@@ -1,8 +1,5 @@
 ## NEED TO IMORT START
 
-params:
-  searchengine: pagefind #fuse, pagefind
-
 ## Language
 defaultContentLanguage: de
 languages:
