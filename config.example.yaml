@@ -1,3 +1,6 @@
+baseURL: 'http://example.org/'
+languageCode: 'de-de'
+title: 'My New Hugo Site'
 ## NEED TO IMORT START
 
 ## Language
@@ -8,6 +11,11 @@ languages:
     description: Docs
     languageName: Germany
     weight: 1
+
+menu:
+  main:
+    - name: docs
+      weight: 1000
 
 module:
   mounts:
