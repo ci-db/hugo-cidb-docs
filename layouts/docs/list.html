@@ -16,7 +16,7 @@
         <div><i class="bi {{$icon}}"></i> 
         {{ $page := . }}
         {{ with .Params.Link }}
-            <a href="{{ . }}">{{ $page.Title }} <i class="bi bi-box-arrow-up-right"></i></a> </i>
+            <a target="_blank" href="{{ . }}">{{ $page.Title }} <i class="bi bi-box-arrow-up-right"></i></a> </i>
         {{ else }}    
             <a href="{{ .Permalink }}">{{ .Title }}</a>
         {{ end }}
