@@ -13,7 +13,14 @@
     {{ end }}
 
     <div>
-        <div><i class="bi {{$icon}}"></i> <a href="{{ .Permalink }}">{{ .Title }}</a></div>
+        <div><i class="bi {{$icon}}"></i> 
+        {{ $page := . }}
+        {{ with .Params.Link }}
+            <a href="{{ . }}">{{ $page.Title }} <i class="bi bi-box-arrow-up-right"></i></a> </i>
+        {{ else }}    
+            <a href="{{ .Permalink }}">{{ .Title }}</a>
+        {{ end }}
+        </div>
         {{ with .Description }}
          <p>{{ . }}</p>
          {{ end }}
