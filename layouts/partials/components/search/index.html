@@ -1,6 +1,13 @@
 {{- $placeholder := "Search All" -}}
 {{- if eq .Type "doc" -}}
-{{- $placeholder = "Search in Doc" -}}
+{{- $placeholder = "search" -}}
+{{ with .Site.Params.searchDocsPlaceholder }}
+{{- $placeholder = . -}}
+{{ end }}
+{{ with .Params.searchDocsPlaceholder }}
+{{- $placeholder = . -}}
+{{ end }}
+
 {{- end -}}
 
 <div class="ci-search ci-component-section">    
