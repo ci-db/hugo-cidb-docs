@@ -31,3 +31,4 @@
 {{ $style_dokus := resources.Get "scss/dokus/dokus.scss" | resources.ToCSS $options_dokus }}
 <link rel="stylesheet" href="{{ $style_dokus.Permalink }}?v={{ now.Unix }}">
 {{- partial "custom/head.html" . -}}
+<base href="{{ .Site.BaseURL }}">

@@ -43,6 +43,25 @@
     }
 }
 
+.layout-page-header {
+    position: running(pageHeader);
+    text-align: left;
+}
+.layout-page-footer {
+    position: running(pageFooter);
+    /*border: 1px solid #000000;*/
+    text-align: left;
+}
+
+.page-number:after {
+    content: counter(page)
+}
+.page-count:after {
+    content: counter(pages)
+}
+
+
+
 
 #list-toc-generated { 
     list-style: none;
@@ -160,3 +179,12 @@
  #frontpage {
     page-break-after: always;
  }
+ #table-of-content {
+    page-break-before: always;
+ }
+
+ #pages .main-title {
+    page-break-before: always;
+ }
+
+

@@ -1,0 +1,22 @@
+
+{{- $img := .Page.Resources.GetMatch .Destination -}}
+
+
+{{ $imgOutput := .Destination | safeURL  }}
+
+{{ with $img }}
+{{ $imgOutput = $img.Resize "1200x" }}
+{{ $imgOutput = $imgOutput.RelPermalink }}
+<p><b>>yes</p>
+{{ else }}
+<p>no</p>
+{{ end }}
+
+
+<p class="md__image">
+    <img src="{{ $imgOutput }}" alt="{{ .Text }}" {{ with .Title}} title="{{ . }}"{{ end }} />
+</p>
+
+
+
+

@@ -4,10 +4,20 @@
 {{ $site := .site }}
 {{ $item := .item }}
 
+<div id="pages">
+
+
+<div class="layout-page-footer">                
+    Seite <span class="page-number" ></span> von <span class="page-count" ></span> 
+</div>
+
+
 {{ with .item }}
 {{ range  $index, $element := where  $item.Pages.ByWeight "Type" "doc" }}    
-
-<h1>{{ .Title }}</h1>
+<h1 class="main-title">{{ .Title }}</h1>
+<div class="layout-page-header">                
+    {{ .Title }}
+</div>
 <div class="content">
     {{ if isset .Params "content_from"}}                    
     {{ $page := $site.GetPage .Params.content_from }}
@@ -24,3 +34,5 @@
 
 {{ end }}
 
+
+</div>
