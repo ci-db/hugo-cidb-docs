@@ -5,6 +5,7 @@
         {{ $options_css1 := (dict "targetPath" "assets/css/default.css" "outputStyle" "compressed" "enableSourceMap" false) }}
         {{ $style1 := resources.Get "scss/print/default.scss" | resources.ToCSS $options_css1 }}
         <link rel="stylesheet" href="{{ $style1.Permalink }}?v={{ now.Unix }}">
+        <base href="{{ .Site.BaseURL }}">
     </head>
 
     <body>

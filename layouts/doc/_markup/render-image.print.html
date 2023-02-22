@@ -6,18 +6,15 @@
 {{- $img = resources.Get $path -}}
 {{- end -}}
 {{- with $img -}}
-{{- $large := $img.Resize "854x" -}}
-{{ $medium := $large.Resize "613x" -}}
-{{ $small := $medium.Resize "458x" -}}
+{{- $large := $img.Resize "680x" -}}
 
 <figure class="image-caption">
-    <img alt="{{ $.Text }}" srcset="
-        {{ $small.RelPermalink }} 458w,
-        {{ $medium.RelPermalink }} 613w,
-        {{ $large.RelPermalink }} 854w"  src="{{ $small.RelPermalink }}" />
+    <img alt="{{ $.Text }}" src="{{ $large.RelPermalink }}" />
+
     {{- with $.Title  -}}
     <figcaption>{{ . | safeHTML }}</figcaption>
     {{ end }}
+    
 </figure>
 {{- else -}}
 <img src="{{ .Destination | safeURL }}" alt="{{ $.Text }}" />{{- end -}}
