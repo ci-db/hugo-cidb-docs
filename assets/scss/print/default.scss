@@ -1,3 +1,69 @@
+@import "../reset";
+
+
+
+#pages h1, #table-of-content h1 {        
+    font-size: 18pt;
+    font-weight: bold;
+}
+
+
+
+
+#pages {
+
+    font-size: 12pt;
+
+    .main-title {
+        page-break-before: always;
+    }
+
+    h1,h2,h3,h4,h5,h6,p,ul {
+        margin-bottom: 5mm;
+    }
+    li, p {
+        line-height: 18pt;
+    }
+
+    ul {
+        margin-left: 10mm;
+    }
+    li {
+        list-style-type: disc;
+    }
+
+    h1 {
+        color: #6485e9;
+    }
+
+    h2 {
+        font-size: 14pt;
+        margin-top: 10mm;
+        font-weight: bold;
+    }
+
+     
+    h1 {
+        counter-increment: counterH1; 
+        counter-reset: counterH2;   
+        &::before {
+            content: counter(counterH1);
+            padding-right: 5mm;
+        }
+    }
+    h2 {
+        counter-increment: counterH2; 
+        counter-reset: counterH3; 
+        &::before{ 
+            content: counter(counterH1) ". " counter(counterH2);
+            padding-right: 5mm;
+        }
+    }
+
+  
+}
+
+
 @page {
     /*margin: 20mm 15mm;*/    
     margin: 76px 15mm 76px 15mm;
@@ -32,16 +98,30 @@
 }
 
 
-@media not print {
+
+
+@media print {
     body {
-        background-color: #cccccc;
+        background-color: transparent;
     }
     .pagedjs_page {
-        background-color: #ffffff;
-        border: 1px solid #000000;
-        margin: 40px auto;
+        background-color: transparent;
+        border: 0;
+        margin: 0;
     }
 }
+body {
+    background-color: #cccccc;
+}
+.pagedjs_page {
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    margin: 40px auto;
+}
+    
+
+
+
 
 .layout-page-header {
     position: running(pageHeader);
@@ -165,8 +245,11 @@
 
 
 #toc {
+    margin-top: 5mm;
+
     /* page-break-after: always;*/
     overflow: hidden;
+    
  }
  #toc ul::-webkit-scrollbar {
      display: none;
@@ -177,14 +260,8 @@
  }
  
  #frontpage {
-    page-break-after: always;
  }
  #table-of-content {
     page-break-before: always;
  }
-
- #pages .main-title {
-    page-break-before: always;
- }
-
 
