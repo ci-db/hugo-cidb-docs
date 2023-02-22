@@ -11,6 +11,8 @@
             <a class="nav-link" href="{{ $root.Permalink }}/_print"  target="_blank"><i class="bi bi-printer"></i> Print Document</a>
         </nav>
         <hr>
-        {{ .TableOfContents }}
+        {{ .TableOfContents | replaceRE `href="#(.*)"` (printf `href="%s#%s"` .Page.RelPermalink "$1") | safeHTML }}
+
+ 
     </div>
 </div>
