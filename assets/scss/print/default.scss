@@ -8,7 +8,12 @@
 }
 
 
-
+b, strong {
+    font-weight: bold;
+}
+i, italic {
+    font-style: italic;
+}
 
 #pages {
 
@@ -100,16 +105,7 @@
 
 
 
-@media print {
-    body {
-        background-color: transparent;
-    }
-    .pagedjs_page {
-        background-color: transparent;
-        border: 0;
-        margin: 0;
-    }
-}
+
 body {
     background-color: #cccccc;
 }
@@ -118,10 +114,6 @@ body {
     border: 1px solid #000000;
     margin: 40px auto;
 }
-    
-
-
-
 
 .layout-page-header {
     position: running(pageHeader);
@@ -139,9 +131,6 @@ body {
 .page-count:after {
     content: counter(pages)
 }
-
-
-
 
 #list-toc-generated { 
     list-style: none;
@@ -259,8 +248,7 @@ body {
      font-size: 10pt;
  }
  
- #frontpage {
- }
+
  #table-of-content {
     page-break-before: always;
  }

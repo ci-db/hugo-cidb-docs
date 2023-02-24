@@ -15,9 +15,13 @@
 
 <h1 class="main-title">{{ .Title }}</h1>
 
+{{ with $root.Params.print.cover.title  }}
+{{ else }}
 <div class="layout-page-header">                
     {{ .Title }}
 </div>
+{{ end }}
+
 <div class="content">
     {{ if isset .Params "content_from"}}                    
     {{ $page := $site.GetPage .Params.content_from }}
@@ -28,7 +32,7 @@
 
 </div>
 {{ if .IsNode  }}      
-{{ partial "pdf/pages" (dict "site" $site "root" $root  "stufe" (add ($stufe) 1)  "item" . )  }}
+{{ partial "print/pages" (dict "site" $site "root" $root  "stufe" (add ($stufe) 1)  "item" . )  }}
 {{ end }}
 {{ end }}
 

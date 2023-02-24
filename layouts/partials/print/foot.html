@@ -1,0 +1,28 @@
+<script src="{{ "js/pagedjs/paged.polyfill.js" | relURL }}"></script>
+<script src="{{ "js/pagedjs/plugins/plugins.js" | relURL }}"></script>  
+<script>
+    Paged.registerHandlers(Toc);  
+    Paged.registerHandlers(RepeatingTableHeaders);
+
+    class PageDefaults extends Paged.Handler {
+        constructor(chunker, polisher, caller) {
+            super(chunker, polisher, caller);
+        }
+    
+
+    
+    
+        afterPageLayout(pageFragment, page) {
+            //console.log(pageFragment);
+        }
+    
+        afterRendered(pages){
+            //cidb_database_extras()        
+            //$(".pagedjs_pages").append('<div id="loaded" />');
+        }
+    }
+    
+</script>
+{{ $options_css2 := (dict "targetPath" "assets/css/media.css" "outputStyle" "compressed" "enableSourceMap" false) }}
+{{ $style2 := resources.Get "scss/print/media.scss" | resources.ToCSS $options_css2 }}
+<link rel="stylesheet" href="{{ $style2.Permalink }}?v={{ now.Unix }}"  media="print">

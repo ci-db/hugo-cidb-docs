@@ -39,12 +39,29 @@
     </div>
     {{- end -}}
     <div id="ci-page-content" class="ci-content hide-on-search ci-component-section" data-pagefind-body >
+
+    {{ if isset .Params.print "cover" }}            
+    <div id="cover">
+        <div id="cover-image">
+        {{ if isset .Params.print.cover "image" }}
+        {{ partial "print/cover_image" . }}
+        {{ end }}
+        </div>
+        <h1>{{ .Params.print.cover.title }}</h1>            
+        <h2>{{ .Params.print.cover.subtitle  }}</h2>
+    </div>
+
+    {{ end }}
+
     
     {{ $page := . }}
     {{- if isset .Params "content_from" -}}            
     {{- $page := .Site.GetPage .Params.content_from -}}
     {{- end -}}
+    {{ if isset .Params.print "cover" }}
+    {{ else }}
     <h1>{{ $page.Title }}</h1>
+    {{ end }}
     {{- if ne $page ".Description" "" -}}
     <p class="content-description">{{ $page.Description }}</p>
     {{ end }}
