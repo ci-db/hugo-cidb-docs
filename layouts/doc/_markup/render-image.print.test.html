@@ -6,15 +6,9 @@
 {{- $img = resources.Get $path -}}
 {{- end -}}
 {{- with $img -}}
-{{ $large := $img.Resize "680x" }}
+{{- $large := $img.Resize "680x" -}}
 
-{{ if lt $img.Width $large.Width }}
-{{ $large = $img.Resize ( printf "%vx" $img.Width )}}
-{{ end }}
-
-
-
-<figure class="ci-text-image image-caption">
+<figure class="image-caption">
     <img alt="{{ $.Text }}" src="{{ $large.RelPermalink }}" />
 
     {{- with $.Title  -}}
