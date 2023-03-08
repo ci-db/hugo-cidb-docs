@@ -23,7 +23,7 @@ i, italic {
         page-break-before: always;
     }
 
-    h1,h2,h3,h4,h5,h6,p,ul {
+    h1,h2,h3,h4,h5,h6,p,ul, .ci-image-wrapper {
         margin-bottom: 5mm;
     }
     li, p {
@@ -63,6 +63,31 @@ i, italic {
             content: counter(counterH1) ". " counter(counterH2);
             padding-right: 5mm;
         }
+    }
+
+    .ci-image-wrapper {
+        text-align: center;
+      
+        figure {
+            display: inline-grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto;
+            font-family: sans-serif;
+            font-size: 0.7em;
+    
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+            figcaption {
+                font-style: italic;
+                width: 0;
+                min-width: 100%;
+                padding: 0 10px;
+                box-sizing: border-box;
+            }
+    
+        }    
     }
 
   

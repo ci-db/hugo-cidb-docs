@@ -1,26 +1,59 @@
-
-
-{{- $img := .Page.Resources.GetMatch .Destination -}}
-{{- if and (not $img) .Page.File -}}
-{{ $path := path.Join .Page.File.Dir .Destination }}
-{{- $img = resources.Get $path -}}
+{{- $u := urls.Parse .Destination -}}
+{{- $alt := plainify .Text -}}
+{{- $title := plainify .Title -}}
+{{- $img := "" -}}
+{{- $u := urls.Parse .Destination -}}
+{{ $weite := "" }}
+{{- if $u.IsAbs -}}
+    {{- with resources.GetRemote $u.String -}}
+        {{- with .Err -}}
+            {{- errorf "%s" -}}
+        {{- else -}}
+            {{- $img = . -}}
+        {{- end -}}
+    {{- else -}}
+        {{- errorf "Unable to get remote image" -}}
+    {{- end -}}
+{{ else }}
+    {{- with .Page.Resources.GetMatch $u.Path -}}
+        {{- $img = . -}}
+        {{ $q := $u.Query }}
+        {{ $weite = $q.Get "w" }}
+    {{- else -}}    
+        {{- errorf "Unable to get local image" -}}
+    {{- end -}}
 {{- end -}}
+
 {{- with $img -}}
-{{ $large := $img.Resize "680x" }}
+    {{- $large := $img.Resize "1200x" -}}    
+    {{- if lt $img.Width $large.Width -}}
+    {{ $large = $img.Resize ( printf "%vx" $img.Width )}}
+    {{- end -}}
+    {{/*
+    {{- $medium := $large.Resize "613x" -}}
+    {{- if lt $large.Width $medium.Width -}}
+    {{- $medium = $large -}}
+    {{- end -}}
 
-{{ if lt $img.Width $large.Width }}
-{{ $large = $img.Resize ( printf "%vx" $img.Width )}}
-{{ end }}
-
-
-
-<figure class="ci-text-image image-caption">
-    <img alt="{{ $.Text }}" src="{{ $large.RelPermalink }}" />
-
-    {{- with $.Title  -}}
-    <figcaption>{{ . | safeHTML }}</figcaption>
-    {{ end }}
-    
-</figure>
-{{- else -}}
-<img src="{{ .Destination | safeURL }}" alt="{{ $.Text }}" />{{- end -}}
+    {{- $small := $medium.Resize "458x" -}}
+    {{- if lt $medium.Width $small.Width -}}
+    {{- $small = $medium -}}
+    {{- end -}}
+    */}}
+    <div class="ci-image-wrapper">
+        <figure class="ci-text-image image-caption"
+        {{ if not (eq $weite "") }}
+        style="width: {{ $weite }}%"
+        {{ end }}
+        >
+            <img
+            {{- with $title }} title="{{ . }}" {{- end -}}
+            {{- with $alt }} alt="{{ . }}" {{- end -}}
+            width="{{ $large.Width }}" 
+             height="{{ $large.Height }}" src="{{ $large.RelPermalink }}"/>
+            {{- with $.Title  -}}
+            <figcaption>{{ . | safeHTML }}</figcaption>
+            {{ end }}
+        </figure>
+    </div>
+{{- end -}}

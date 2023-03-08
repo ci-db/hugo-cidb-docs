@@ -1,5 +1,6 @@
 @import "bootstrap.scss";
 
+
 .show-on-search {
     display: none;
 }
@@ -170,7 +171,10 @@ html, body {
             grid-template-rows: auto auto;
             font-family: sans-serif;
             font-size: 0.7em;
-    
+            img {
+                max-width: 100%;
+                height: auto;
+            }
             figcaption {
                 width: 0;
                 min-width: 100%;
