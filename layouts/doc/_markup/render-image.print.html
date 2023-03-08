@@ -4,6 +4,8 @@
 {{- $img := "" -}}
 {{- $u := urls.Parse .Destination -}}
 {{ $weite := "" }}
+{{ $q := $u.Query }}
+
 {{- if $u.IsAbs -}}
     {{- with resources.GetRemote $u.String -}}
         {{- with .Err -}}
@@ -17,7 +19,6 @@
 {{ else }}
     {{- with .Page.Resources.GetMatch $u.Path -}}
         {{- $img = . -}}
-        {{ $q := $u.Query }}
         {{ $weite = $q.Get "w" }}
     {{- else -}}    
         {{- errorf "Unable to get local image" -}}
@@ -47,6 +48,7 @@
         {{ end }}
         >
             <img
+            class='ci-image{{- with $q.Get "b"}} image-border{{- end -}}'
             {{- with $title }} title="{{ . }}" {{- end -}}
             {{- with $alt }} alt="{{ . }}" {{- end -}}
             width="{{ $large.Width }}" 
