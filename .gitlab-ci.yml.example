@@ -1,0 +1,22 @@
+stages:
+  #- build
+  - deploy
+
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+
+pages:
+  stage: deploy
+  image: bluffy2006/hugo
+  script:
+   #- hugo -b http://url/path/path/ --config config.toml
+    - hugo
+  artifacts:
+    paths:
+    - public
+    expire_in: 5 min
+  only:
+  - main
+
+
+

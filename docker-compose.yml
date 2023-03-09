@@ -1,0 +1,21 @@
+
+version: "3.9"
+services:  
+  hugo:
+    image: bluffy2006/hugo
+    volumes:
+      - ".:/usr/share/blog"
+    ports:
+      - "1313:1313"
+    command: hugo -b http://localhost:9080/  --config config.yaml,dev.yaml --watch
+  web:
+      image: nginx:latest
+      ports:
+          - "9080:9080"
+      volumes:
+          - ./nginx.conf:/etc/nginx/conf.d/nginx.conf
+          - ./public:/app
+  php:
+      image: php:fpm
+      volumes:
+          - ./public:/app
