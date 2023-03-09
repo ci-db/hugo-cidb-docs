@@ -1,9 +1,9 @@
 ---
-title: Über uns
+title: About
 menu: 
   main: 
     weight: 200
 ---
 
 
-Was wir wissen wollen
+About
