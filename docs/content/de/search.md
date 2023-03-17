@@ -1,5 +1,5 @@
 ---
-title: "Search Results"
+title: {{ i18n "search_result" . }}
 sitemap:
   priority : 0.1
 layout: "search"

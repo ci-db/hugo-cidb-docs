@@ -1,11 +1,10 @@
 {{- $placeholder := "Search All" -}}
 {{- if eq .Type "doc" -}}
 {{- $placeholder = "search" -}}
-{{ with .Site.Params.searchDocsPlaceholder }}
-{{- $placeholder = . -}}
-{{ end }}
 {{ with .Params.searchDocsPlaceholder }}
 {{- $placeholder = . -}}
+{{ else }}
+{{- $placeholder =  i18n "search_document" .  -}}
 {{ end }}
 
 {{- end -}}
@@ -17,7 +16,7 @@
         <input type="input" class="form-control" id="doc-search" placeholder="{{ $placeholder }}">
     </div> 
     <div class="col-auto mt-2 show-on-search">
-        <button class="btn btn-primary" type="button" id="doc-search-cancle" ><i class="bi bi-backspace"></i> Back</button>
+        <button class="btn btn-primary" type="button" id="doc-search-cancle" ><i class="bi bi-backspace"></i> {{ i18n "button_back" . }}</button>
     </div>      
 </div> 
 

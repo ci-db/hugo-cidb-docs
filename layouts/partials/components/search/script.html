@@ -113,7 +113,7 @@
     if(result.length > 0){
       populateResults(result,searchQuery);
     }else{
-      $('#doc-search-results .results').html("<p>No matches found</p>");
+      $('#doc-search-results .results').html('<p>{{ i18n "no_matches_found" . }}</p>');
     }
   }
 

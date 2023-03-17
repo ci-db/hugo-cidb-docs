@@ -41,7 +41,22 @@
     {{- $small = $medium -}}
     {{- end -}}
     */}}
-    <div class="ci-image-wrapper">
+    <div class="d-xl-none ci-image-wrapper">
+        <figure class="ci-text-image image-caption"
+
+        >
+            <img
+            class='ci-image{{- with $q.Get "b"}} image-border{{- end -}}'
+            {{- with $title }} title="{{ . }}" {{- end -}}
+            {{- with $alt }} alt="{{ . }}" {{- end -}}
+            width="{{ $large.Width }}" 
+             height="{{ $large.Height }}" src="{{ $large.RelPermalink }}"/>
+            {{- with $.Title  -}}
+            <figcaption>{{ . | safeHTML }}</figcaption>
+            {{ end }}
+        </figure>
+    </div>    
+    <div class="d-none d-xl-block ci-image-wrapper">
         <figure class="ci-text-image image-caption"
         {{ if not (eq $weite "") }}
         style="width: {{ $weite }}%"
