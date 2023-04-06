@@ -1,6 +1,8 @@
 @import "bootstrap.scss";
 
 
+
+
 .show-on-search {
     display: none;
 }
@@ -157,6 +159,38 @@ html, body {
 
 #ci-page-content{
 
+    pre {
+        code {
+            display: block;
+            background-color: #f1f2f2;
+            padding: 10px;
+            border: 1px solid #cccccc;
+        }
+    }
+
+    .highlight {
+        margin-bottom: 1rem;
+
+        pre {
+            margin-bottom: 0;
+            code {
+                display: unset;
+                background-color: unset;
+                padding: unset;
+                border: unset;
+            }
+        }
+
+
+
+        > pre {
+            padding: 10px;
+        }
+
+        > div {
+            padding: 10px 0;
+        }
+    }
 
     blockquote {
         background: #f9f9f9;
