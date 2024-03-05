@@ -73,7 +73,6 @@ html, body {
 
     #breadcrumb {
     
-      
         ol, li {
             padding-bottom: 0;
         }
@@ -146,6 +145,8 @@ html, body {
     }
 
     #content {
+       
+
         padding-right:10px;
     }
   
@@ -158,7 +159,7 @@ html, body {
 }
 
 #ci-page-content{
-
+    padding-top: 40px;
     pre {
         code {
             display: block;

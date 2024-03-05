@@ -2,3 +2,4 @@ resources/
 public/
 public_pagefind/
 static/_pagefind/
+.hugo_build.lock
