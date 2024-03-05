@@ -1,4 +1,4 @@
-
+TEST
 # falls Hugo lokal benutzt werden soll
 
     git submodule update --init
