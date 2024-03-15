@@ -1,0 +1,67 @@
+baseURL: 'http://example.org/'
+languageCode: 'de-de'
+title: 'My New Hugo Site'
+## NEED TO IMORT START
+
+
+module:
+  mounts:
+    - source: content/de
+      target: content
+    # optional  
+    - source: example/content/de/docs/userguide
+      target: content/docs/userguide
+
+
+## Language
+defaultContentLanguage: de
+languages:
+  de:
+    title: Doku Theme
+    description: Docs
+    languageName: Germany
+    weight: 1
+
+menu:
+  main:
+    - name: docs
+      weight: 1000
+      url: /docs
+
+
+
+
+outputs:
+  section: [HTML, RSS, PRINT, FUSE_SEARCH]  # FUSE_SEARCH_DOC,PRINT
+  page: [HTML]   
+  home:
+    - HTML
+    - RSS
+    - FUSE_SEARCH
+  #  - DOCPATHS
+
+
+params:
+  searchengine: fuse #fuse, pagefind
+  doc:
+    collapsible: true
+  page:
+  top:
+    enable: true
+    fluid: false
+  nav:
+    enable: true
+    fluid: false
+
+outputFormats:
+  print:
+    baseName: index
+    isHTML: true
+    mediaType: text/html
+    path: _print    
+    permalinkable: false
+  fuse_search:
+    baseName: _searchindex 
+    isHTML: false
+    mediaType: application/json
+    permalinkable: false  
